@@ -25,8 +25,15 @@ dependencies {
 }
 
 dependencies {
-    testImplementation("com.google.truth:truth:1.4.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
+    testCompileOnly("org.junit.jupiter:junit-jupiter-params:5.10.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
+    testImplementation("com.google.truth:truth:1.4.2")
+    testRuntimeOnly("com.google.flogger:flogger-log4j2-backend:0.8")
 
     testImplementation("com.github.maxim5:java-basics:0.1.2:test-fixtures")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
