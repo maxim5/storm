@@ -1,6 +1,7 @@
 plugins {
     `idea`
     `java`
+    `java-library`
     `maven-publish`
 }
 
@@ -13,7 +14,7 @@ tasks.wrapper {
     scriptFile = projectDir.resolve("gradle/wrapper/gradlew")
 }
 
-subprojects {
+allprojects {
     apply(plugin = "idea")
     apply(plugin = "java")
 
@@ -29,6 +30,31 @@ subprojects {
     repositories {
         mavenCentral()
         maven("https://jitpack.io")
+    }
+
+    tasks.test {
+        useJUnitPlatform()
+    }
+}
+
+dependencies {
+    api(project(":orm-api"))
+    api(project(":orm-generator"))
+}
+
+subprojects {
+    apply(plugin = "maven-publish")
+
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = rootProject.group.toString()
+                artifactId = project.name.replace("orm-", "storm-")
+                version = rootProject.version.toString()
+
+                from(components["java"])
+            }
+        }
     }
 }
 

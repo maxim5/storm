@@ -39,7 +39,3 @@ dependencies {
     testImplementation("com.github.maxim5:java-basics:0.1.2:test-fixtures")
     testImplementation("com.github.maxim5:prima:0.1.1:test-fixtures")
 }
-
-tasks.test {
-    useJUnitPlatform()
-}
