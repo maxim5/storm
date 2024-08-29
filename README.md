@@ -1,5 +1,7 @@
 # Stellar ORM
 
+Model first approach: JDBC tables and adapters are generated from java classes.
+
 ## Gradle Setup
 
 ```kotlin
