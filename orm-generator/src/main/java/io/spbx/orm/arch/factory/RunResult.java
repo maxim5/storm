@@ -2,12 +2,14 @@ package io.spbx.orm.arch.factory;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.arch.model.AdapterArch;
 import io.spbx.orm.arch.model.TableArch;
 import org.jetbrains.annotations.NotNull;
 
 import static java.util.Objects.requireNonNull;
 
+@Immutable
 class RunResult {
     private final @NotNull ImmutableMap<Class<?>, TableArch> tables;
     private final @NotNull ImmutableList<AdapterArch> adapters;
