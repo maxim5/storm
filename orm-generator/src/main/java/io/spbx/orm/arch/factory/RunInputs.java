@@ -1,11 +1,13 @@
 package io.spbx.orm.arch.factory;
 
 import com.google.common.collect.ImmutableList;
+import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
 
+@Immutable
 public class RunInputs {
     private final ImmutableList<ModelInput> models;
     private final ImmutableList<PojoInput> pojos;

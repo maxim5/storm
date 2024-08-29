@@ -2,7 +2,6 @@ package io.spbx.orm.arch.model;
 
 import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.Immutable;
-import com.google.mu.util.Optionals;
 import io.spbx.orm.api.ReadFollow;
 import io.spbx.util.base.Pair;
 import io.spbx.util.lazy.AtomicCacheCompute;
@@ -16,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static io.spbx.orm.api.ReadFollow.FOLLOW_ALL;
@@ -136,11 +136,11 @@ public final class TableArch implements JavaNameHolder, HasColumns, HasPrefixedC
     }
 
     public @NotNull Optional<ForeignTableField> leftBridgeField() {
-        return Optionals.optionally(isBridgeTable(), this::leftBridgeFieldOrDie);
+        return optionally(isBridgeTable(), this::leftBridgeFieldOrDie);
     }
 
     public @NotNull Optional<ForeignTableField> rightBridgeField() {
-        return Optionals.optionally(isBridgeTable(), this::rightBridgeFieldOrDie);
+        return optionally(isBridgeTable(), this::rightBridgeFieldOrDie);
     }
 
     public @NotNull ForeignTableField leftBridgeFieldOrDie() {
@@ -212,5 +212,9 @@ public final class TableArch implements JavaNameHolder, HasColumns, HasPrefixedC
     public String toString() {
         return "TableArch[sqlName=%s, javaName=%s, modelClass=%s, modelName=%s, bridgeInfo=%s]"
                 .formatted(sqlName, javaName, modelClass, modelName, bridgeInfo);
+    }
+
+    private static <T> Optional<T> optionally(boolean cond, @NotNull Supplier<T> supplier) {
+        return cond ? Optional.of(supplier.get()) : Optional.empty();
     }
 }
