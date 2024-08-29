@@ -51,7 +51,6 @@ subprojects {
                 groupId = rootProject.group.toString()
                 artifactId = project.name.replace("orm-", "storm-")
                 version = rootProject.version.toString()
-
                 from(components["java"])
             }
         }
@@ -64,7 +63,6 @@ publishing {
             groupId = project.group.toString()
             artifactId = "storm"
             version = project.version.toString()
-
             from(components["java"])
         }
     }
