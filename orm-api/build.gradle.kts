@@ -7,12 +7,10 @@ plugins {
 dependencies {
     compileOnly("org.jetbrains:annotations:24.1.0")
     compileOnly("com.google.errorprone:error_prone_annotations:2.28.0")
-
     compileOnly("com.google.flogger:flogger:0.8")
 
     implementation("com.github.maxim5:java-basics:0.1.2")
     implementation("com.github.maxim5:prima:0.1.1")
-
     implementation("com.google.guava:guava:33.2.0-jre")
     implementation("com.carrotsearch:hppc:0.10.0")
 }

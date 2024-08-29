@@ -9,15 +9,15 @@ dependencies {
     compileOnly("com.google.flogger:flogger:0.8")
     compileOnly("jakarta.inject:jakarta.inject-api:2.0.1.MR")
 
+    implementation(project(":orm-api"))
+    implementation("com.github.maxim5:java-basics:0.1.2")
+    implementation("com.github.maxim5:prima:0.1.1")
     implementation("org.jetbrains:annotations:24.1.0")         // @NotNull and @Nullable are necessary at runtime
     implementation("com.google.guava:guava:33.2.0-jre")
-
-    api(project(":orm-api"))
-    api("com.github.maxim5:java-basics:0.1.2")
-    api("com.github.maxim5:prima:0.1.1")
 }
 
 dependencies {
+    testFixturesImplementation("com.github.maxim5:java-basics:0.1.2")
     testFixturesImplementation("org.jetbrains:annotations:24.1.0")
     testFixturesImplementation("com.google.guava:guava:33.2.0-jre")
     testFixturesApi(testFixtures(project(":orm-api")))
