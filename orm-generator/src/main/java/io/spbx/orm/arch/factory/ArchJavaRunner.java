@@ -30,10 +30,12 @@ public class ArchJavaRunner {
     }
 
     public ArchJavaRunner() {
-        this(new DefaultModelAdaptersLocator());
+        this(DefaultModelAdaptersLocator.fromCurrentClassLoader());
     }
 
     public void runGenerate(@NotNull String destinationPath, @NotNull RunInputs inputs) throws IOException {
+        log.at(Level.INFO).log("Running orm generator for %d models and %d pojo classes",
+                               inputs.models().size(), inputs.pojos().size());
         destination = destinationPath;
         TimeIt.timeIt(() -> {
             RunResult runResult = new ArchFactory(locator).build(inputs);

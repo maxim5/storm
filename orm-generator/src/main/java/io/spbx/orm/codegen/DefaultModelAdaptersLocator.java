@@ -3,25 +3,24 @@ package io.spbx.orm.codegen;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.Iterables;
+import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.adapter.JdbcAdapt;
 import io.spbx.util.classpath.ClassNamePredicate;
+import io.spbx.util.classpath.ClasspathScanner;
 import io.spbx.util.classpath.GuavaClasspathScanner;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 
+@Immutable
 public class DefaultModelAdaptersLocator implements ModelAdaptersLocator {
     protected static final ClassNamePredicate FILTER_BY_NAME = (pkg, cls) -> cls.endsWith("JdbcAdapter");
     protected static final String NAME = "model adapter";
 
     protected final ImmutableListMultimap<Class<?>, Class<?>> index;
 
-    public DefaultModelAdaptersLocator() {
-        this(GuavaClasspathScanner.fromSystemClassLoader().timed(NAME).getAnnotatedClasses(FILTER_BY_NAME, JdbcAdapt.class));
-    }
-
-    protected DefaultModelAdaptersLocator(@NotNull Set<Class<?>> adapters) {
+    protected DefaultModelAdaptersLocator(@NotNull Iterable<Class<?>> adapters) {
         ImmutableListMultimap.Builder<Class<?>, Class<?>> builder = new ImmutableListMultimap.Builder<>();
         for (Class<?> adapter : adapters) {
             if (adapter.isAnnotationPresent(JdbcAdapt.class)) {
@@ -32,6 +31,23 @@ public class DefaultModelAdaptersLocator implements ModelAdaptersLocator {
             }
         }
         this.index = builder.build();
+    }
+
+    public static @NotNull DefaultModelAdaptersLocator fromCurrentClassLoader() {
+        return from(DefaultModelAdaptersLocator.class.getClassLoader());
+    }
+
+    public static @NotNull DefaultModelAdaptersLocator fromSystemClassLoader() {
+        return from(ClassLoader.getSystemClassLoader());
+    }
+
+    public static @NotNull DefaultModelAdaptersLocator from(@NotNull ClassLoader classLoader) {
+        return from(GuavaClasspathScanner.fromClassLoader(classLoader));
+    }
+
+    public static @NotNull DefaultModelAdaptersLocator from(@NotNull ClasspathScanner scanner) {
+        Set<Class<?>> adapters = scanner.timed(NAME).getAnnotatedClasses(FILTER_BY_NAME, JdbcAdapt.class);
+        return new DefaultModelAdaptersLocator(adapters);
     }
 
     @Override
