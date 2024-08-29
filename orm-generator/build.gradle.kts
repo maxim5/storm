@@ -11,7 +11,6 @@ dependencies {
 
     implementation("org.jetbrains:annotations:24.1.0")         // @NotNull and @Nullable are necessary at runtime
     implementation("com.google.guava:guava:33.2.0-jre")
-    implementation("com.google.mug:mug:7.2")
 
     api(project(":orm-api"))
     api("com.github.maxim5:java-basics:0.1.2")
