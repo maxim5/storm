@@ -12,8 +12,8 @@ import static io.spbx.orm.api.query.Representables.joinWithLines;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents one or more SQL filter clauses: <code>WHERE</code>, <code>ORDER BY</code>, <code>LIMIT</code> and
- * <code>OFFSET</code>.
+ * Represents one or more SQL filter clauses: {@code WHERE}, {@code ORDER BY}, {@code LIMIT} and
+ * {@code OFFSET}.
  */
 @Immutable
 public class CompositeFilter extends Unit implements Filter {

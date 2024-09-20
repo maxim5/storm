@@ -5,12 +5,14 @@ import io.spbx.orm.adapter.std.time.InstantJdbcAdapter;
 import io.spbx.orm.adapter.std.time.OffsetDateTimeJdbcAdapter;
 import io.spbx.orm.adapter.std.time.OffsetTimeJdbcAdapter;
 import io.spbx.orm.adapter.std.time.PeriodJdbcAdapter;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
 
+@Tag("fast")
 public class AdapterApiTest {
     @Test
     public void classToAdapterColumns_duration_adapter() {

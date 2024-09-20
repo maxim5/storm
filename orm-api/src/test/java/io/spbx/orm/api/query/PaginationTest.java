@@ -2,11 +2,13 @@ package io.spbx.orm.api.query;
 
 import io.spbx.orm.api.PageToken;
 import io.spbx.orm.testing.FakeColumn;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 import static io.spbx.orm.api.query.Pagination.*;
 
+@Tag("fast")
 public class PaginationTest {
     @Test
     public void init_valid_first_page() {

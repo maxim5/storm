@@ -1,5 +1,6 @@
 package io.spbx.orm.codegen;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -8,6 +9,7 @@ import static io.spbx.orm.codegen.Indent.INDENT1;
 import static io.spbx.orm.codegen.Joining.linesJoiner;
 import static io.spbx.util.testing.TestingBasics.streamOf;
 
+@Tag("fast")
 public class JoiningTest {
     @Test
     public void linesJoiner_simple() {

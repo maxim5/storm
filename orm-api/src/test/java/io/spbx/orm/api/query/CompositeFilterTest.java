@@ -2,10 +2,12 @@ package io.spbx.orm.api.query;
 
 import io.spbx.orm.api.Engine;
 import io.spbx.orm.testing.FakeColumn;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.orm.testing.AssertSql.assertThat;
 
+@Tag("fast")
 public class CompositeFilterTest {
     @Test
     public void with_where() {

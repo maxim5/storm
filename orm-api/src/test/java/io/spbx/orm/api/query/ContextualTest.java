@@ -2,6 +2,7 @@ package io.spbx.orm.api.query;
 
 import com.carrotsearch.hppc.IntArrayList;
 import io.spbx.orm.testing.FakeColumn;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -12,6 +13,7 @@ import static io.spbx.util.testing.TestingBasics.listOf;
 import static io.spbx.util.testing.TestingBasics.mapOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Tag("fast")
 public class ContextualTest {
     @Test
     public void invalid_resolver_map_is_empty() {

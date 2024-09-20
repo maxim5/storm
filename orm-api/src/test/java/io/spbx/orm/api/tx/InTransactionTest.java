@@ -11,6 +11,7 @@ import io.spbx.util.testing.CalledOnce;
 import io.spbx.util.testing.MoreTruth;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ import static io.spbx.orm.testing.MockingJdbc.mockResultSet;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 // FIX[minor]: more tests: force .commit() or .rollback() to fail
+@Tag("fast")
 public class InTransactionTest {
     private MockConnection mockedConnection;
     private PreparedStatementResultSetHandler resultSetHandler;

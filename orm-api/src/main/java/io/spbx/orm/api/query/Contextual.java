@@ -11,21 +11,22 @@ import java.util.function.Function;
 /**
  * A wrapper for the unresolved query that can resolve args once the context is provided.
  * <p>
- * A typical use-case is the following. The top level query is a batch INSERT or UPDATE with a filter.
+ * A typical use-case is the following.
+ * The top level query is a batch {@code INSERT} or {@code UPDATE} with a filter.
  * A filter is thus contextually dependent on each chunk in the batch and can't be calculated statically.
  * <p>
  * Example query:
- * <pre>
+ * {@snippet lang="SQL" :
  *   UPDATE user_model
  *   SET user_id = ?, age = ?    -- Two columns updated => chunk_size=2 => batch can be size of 2, 4, 6, ...
  *   WHERE user_id = ?           -- For each chunk, its first value must be added to params again
- * </pre>
+ * }
  * <p>
  * So the filter query is wrapped into a {@code Contextual}. In order to resolve to work, a {@code resolver} function
  * is also necessary, which will be called for each chunk in a batch (called a context {@link C}).
  *
  * @param <Q> the type of query having unresolved args (usually a {@link Filter} instance, e.g. {@link Where})
- * @param <C> the type of context used for resolution (usually a chunk, e.g. {@link List< EntityData >})
+ * @param <C> the type of context used for resolution (usually a chunk, e.g. {@link List<EntityData>})
  */
 @Immutable
 public abstract class Contextual<Q extends HasArgs, C> implements Representable {

@@ -14,7 +14,7 @@ import static io.spbx.orm.api.query.Args.flattenArgsOf;
 import static io.spbx.orm.api.query.Representables.joinWithLines;
 
 /**
- * A standard <code>SELECT ... GROUP BY ...</code> query. Supports additional <code>HAVING</code> and
+ * A standard {@code SELECT ... GROUP BY ...} query. Supports additional {@code HAVING} and
  * {@link CompositeFilter} clauses.
  */
 @Immutable

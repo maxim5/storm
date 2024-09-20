@@ -31,8 +31,8 @@ import java.util.stream.Stream;
 import static io.spbx.util.base.BasicExceptions.newInternalError;
 
 /**
- * Holds the ordered list of arguments to be applied to JDBC queries. The list corresponds to all <code>"?"</code>
- * in the query, i.e. all non-hardcoded values. The <code>"?"</code> usually appear in the query via {@link Variable}s.
+ * Holds the ordered list of arguments to be applied to JDBC queries. The list corresponds to all {@code "?"}
+ * in the query, i.e. all non-hardcoded values. The {@code "?"} usually appear in the query via {@link Variable}s.
  * <p>
  * Arguments can include constant values (e.g., ints, {@code String} literals, or arbitrary {@code Object}s) or
  * unresolved values (instances of {@link UnresolvedArg} class). Unresolved args are essentially named placeholders
@@ -216,7 +216,7 @@ public final class Args {
     }
 
     /**
-     * Returns a map of unresolved arguments of this instance: <code>position -> arg</code>.
+     * Returns a map of unresolved arguments of this instance: {@code position -> arg}.
      * If all resolved, result is empty.
      */
     // FIX[minor]: Use array or IntObjMap to optimize storage?

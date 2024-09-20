@@ -4,12 +4,14 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.testing.AssertSql;
 import io.spbx.orm.testing.FakeColumn;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.orm.api.query.Func.*;
 import static io.spbx.orm.api.query.Shortcuts.STAR;
 import static io.spbx.orm.testing.AssertSql.assertReprThrows;
 
+@Tag("fast")
 public class SelectGroupByTest {
     @Test
     public void select_one_column_group_by_one() {

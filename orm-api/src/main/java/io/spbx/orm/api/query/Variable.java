@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * A class for the variable occurrence in the SQL query. Is a {@link Term}.
- * SQL repr: <code>?</code>.
+ * SQL repr: {@code ?}.
  */
 @Immutable
 public class Variable extends Unit implements Term {

@@ -20,13 +20,13 @@ public @interface Model {
     String javaName() default "";
 
     /**
-     * Indicates the table name in SQL. By default, uses a <code>[model_name]_table</code> pattern.
+     * Indicates the table name in SQL. By default, uses a {@code [model_name]_table} pattern.
      * This option overwrites {@link #javaName()}.
      */
     String sqlName() default "";
 
     /**
-     * Indicates the java name for the table class. By default, uses a <code>[ModelName]Table</code> pattern.
+     * Indicates the java name for the table class. By default, uses a {@code [ModelName]Table} pattern.
      * This option overwrites {@link #javaName()}.
      */
     String javaTableName() default "";

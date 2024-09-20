@@ -4,10 +4,12 @@ import io.spbx.util.base.Int128;
 import io.spbx.util.base.OneOf;
 import io.spbx.util.base.Pair;
 import io.spbx.util.base.Triple;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.util.testing.AssertBasics.assertReversibleRoundtrip;
 
+@Tag("fast")
 public class BytesMapperTest {
     @Test
     public void of_pair_roundtrip() {

@@ -14,7 +14,7 @@ import static io.spbx.orm.api.query.Args.flattenArgsOf;
 import static io.spbx.orm.api.query.Representables.joinWithLines;
 
 /**
- * A standard <code>SELECT ... FROM ... WHERE ...</code> query. Supports additional {@link CompositeFilter} clauses.
+ * A standard {@code SELECT ... FROM ... WHERE ...} query. Supports additional {@link CompositeFilter} clauses.
  */
 @Immutable
 public class SelectWhere extends Unit implements TypedSelectQuery {

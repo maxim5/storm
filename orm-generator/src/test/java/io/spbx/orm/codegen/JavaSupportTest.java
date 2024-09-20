@@ -4,10 +4,12 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.testing.AssertCode;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.orm.codegen.JavaSupport.wrapAsStringLiteral;
 
+@Tag("fast")
 public class JavaSupportTest {
     @Test
     public void wrapAsStringLiteral_one_line() {

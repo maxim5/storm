@@ -4,8 +4,10 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.testing.AssertSql;
 import io.spbx.orm.testing.FakeColumn;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("fast")
 public class SelectJoinTest {
     @Test
     public void select_join_on_simple() {

@@ -20,6 +20,7 @@ import io.spbx.util.testing.CalledOnce;
 import io.spbx.util.testing.MoreTruth;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.sql.PreparedStatement;
@@ -41,6 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 // FIX[norm]: more tests: .runAndGetInt() result type mismatch
+@Tag("fast")
 public class QueryRunnerTest {
     private static final Object NULL = null;
     private static final UnresolvedArg UNRESOLVED_A = new UnresolvedArg("a", 0);

@@ -9,6 +9,7 @@ import io.spbx.util.collect.Streamer;
 import io.spbx.util.testing.TestingBasics;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import static io.spbx.util.testing.TestingBasics.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
+@Tag("fast")
 public class ArgsTest {
     private static final Object NULL = null;
     private static final UnresolvedArg UNRESOLVED_A = new UnresolvedArg("a", 0);

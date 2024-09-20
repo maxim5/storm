@@ -2,6 +2,8 @@ package io.spbx.orm.arch.model;
 
 import io.spbx.orm.arch.util.Naming;
 import io.spbx.util.func.Reversible;
+import io.spbx.util.reflect.BasicMembers.Fields;
+import io.spbx.util.reflect.BasicMembers.Methods;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,7 +15,9 @@ import static io.spbx.orm.arch.InvalidSqlModelException.failIf;
 import static io.spbx.orm.arch.InvalidSqlModelException.newInvalidSqlModelException;
 import static io.spbx.util.reflect.BasicGenerics.getGenericTypeArgumentsOfInterface;
 import static io.spbx.util.reflect.BasicGenerics.isWildcardType;
-import static io.spbx.util.reflect.BasicMembers.*;
+import static io.spbx.util.reflect.BasicMembers.hasName;
+import static io.spbx.util.reflect.BasicMembers.hasType;
+import static io.spbx.util.reflect.BasicMembers.isPublicStatic;
 import static java.util.Objects.requireNonNull;
 
 public class MapperApi implements ApiFormatter<MapperApi.MapperCallFormatter> {
@@ -108,19 +112,19 @@ public class MapperApi implements ApiFormatter<MapperApi.MapperCallFormatter> {
     private static @NotNull String classToStaticRef(@NotNull Class<?> klass) {
         String canonicalName = Naming.shortCanonicalJavaName(klass);
 
-        if (hasMethod(klass, Scope.ALL, method -> isPublicStatic(method) && method.getName().equals("forward")) &&
-            hasMethod(klass, Scope.ALL, method -> isPublicStatic(method) && method.getName().equals("backward"))) {
+        if (Methods.of(klass).has(method -> isPublicStatic(method) && hasName(method, "forward")) &&
+            Methods.of(klass).has(method -> isPublicStatic(method) && hasName(method, "backward"))) {
             return canonicalName;
         }
 
-        Field fieldInstance = findField(klass, field -> isPublicStatic(field) && field.getType().isAssignableFrom(klass));
+        Field fieldInstance = Fields.of(klass).find(field -> isPublicStatic(field) && hasType(field, klass));
         if (fieldInstance != null) {
             return "%s.%s".formatted(canonicalName, fieldInstance.getName());
         }
 
         if (klass.isAnonymousClass()) {
             Class<?> enclosingClass = requireNonNull(klass.getEnclosingClass());
-            fieldInstance = findField(enclosingClass, field -> isPublicStatic(field) && field.getType().isAssignableFrom(klass));
+            fieldInstance = Fields.of(enclosingClass).find(field -> isPublicStatic(field) && hasType(field, klass));
             if (fieldInstance != null) {
                 return "%s.%s".formatted(Naming.shortCanonicalJavaName(enclosingClass), fieldInstance.getName());
             }

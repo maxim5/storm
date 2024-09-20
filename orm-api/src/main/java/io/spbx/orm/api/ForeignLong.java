@@ -10,7 +10,7 @@ import java.util.function.ToLongFunction;
 import static io.spbx.util.base.EasyCast.castAny;
 
 /**
- * A {@link Foreign} implementation for long FK. Note: zero ids are treated as <code>NULL</code>s.
+ * A {@link Foreign} implementation for long FK. Note: zero ids are treated as {@code NULL}s.
  */
 public final class ForeignLong<E> implements Foreign<Long, E> {
     private static final ForeignLong<?> EMPTY = new ForeignLong<>(0, null);

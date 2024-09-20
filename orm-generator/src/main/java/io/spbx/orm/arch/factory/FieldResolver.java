@@ -5,11 +5,11 @@ import io.spbx.orm.arch.model.JdbcType;
 import io.spbx.orm.arch.model.MapperApi;
 import io.spbx.orm.arch.model.TableArch;
 import io.spbx.orm.arch.util.AnnotationsAnalyzer;
+import io.spbx.orm.arch.util.JavaField;
 import io.spbx.util.base.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Field;
 import java.util.Collection;
 
 import static io.spbx.orm.arch.InvalidSqlModelException.failIf;
@@ -25,7 +25,7 @@ class FieldResolver {
         this.foreignTableArchResolver = new ForeignTableArchResolver(runContext);
     }
 
-    public @NotNull ResolveResult resolve(@NotNull Field field) {
+    public @NotNull ResolveResult resolve(@NotNull JavaField field) {
         JdbcType jdbcType = JdbcType.findByMatchingNativeType(field.getType());
         if (jdbcType != null) {
             return ResolveResult.ofNative(jdbcType);
@@ -125,7 +125,7 @@ class FieldResolver {
         POJO,
     }
 
-    private static void validateFieldForPojo(@NotNull Field field) {
+    private static void validateFieldForPojo(@NotNull JavaField field) {
         Class<?> fieldType = field.getType();
         String typeName = field.getGenericType().getTypeName();
 

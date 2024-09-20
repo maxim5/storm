@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * A query unit with an alias.
- * SQL repr: <code>[term] AS [name]</code>.
+ * SQL repr: {@code [term] AS [name]}.
  */
 @Immutable
 public class NamedAs extends Unit implements Named {

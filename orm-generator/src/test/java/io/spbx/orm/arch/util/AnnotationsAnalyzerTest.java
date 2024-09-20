@@ -14,20 +14,19 @@ import io.spbx.orm.api.annotate.Sql.PK;
 import io.spbx.orm.api.annotate.Sql.Unique;
 import io.spbx.orm.api.annotate.Sql.Via;
 import io.spbx.orm.arch.InvalidSqlModelException;
-import io.spbx.orm.arch.factory.ModelInput;
-import io.spbx.util.reflect.BasicMembers;
+import io.spbx.util.reflect.BasicMembers.Fields;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
 import java.util.Optional;
 
 import static com.google.common.truth.Truth.assertThat;
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Tag("fast")
 public class AnnotationsAnalyzerTest {
     @Test
     public void getSqlName_annotations() {
@@ -126,13 +125,13 @@ public class AnnotationsAnalyzerTest {
     }
 
     private record JavaClassAnalyzerSubject(@NotNull Class<?> klass) {
-        public @NotNull AnnotatedElementSubject ofField(@NotNull String name) {
-            Field field = requireNonNull(BasicMembers.findField(klass, name));
-            return new AnnotatedElementSubject(field, klass);
+        public @NotNull AnnotationsAnalyzerTest.JavaFieldSubject ofField(@NotNull String name) {
+            Field field = Fields.of(klass).getOrDie(name);
+            return new JavaFieldSubject(new JavaField(field, klass));
         }
     }
 
-    private record AnnotatedElementSubject(@NotNull AnnotatedElement element, @NotNull Class<?> klass) {
+    private record JavaFieldSubject(@NotNull JavaField element) {
         public @NotNull StringSubject hasSqlName() {
             Optional<String> sqlName = AnnotationsAnalyzer.getSqlName(element);
             return assertThat(sqlName.orElse(null));
@@ -144,7 +143,7 @@ public class AnnotationsAnalyzerTest {
         }
 
         public @NotNull BooleanSubject isPrimaryKeyField() {
-            boolean isPrimaryKey = AnnotationsAnalyzer.isPrimaryKeyField((Field) element, ModelInput.of(klass));
+            boolean isPrimaryKey = AnnotationsAnalyzer.isPrimaryKeyField(element);
             return assertThat(isPrimaryKey);
         }
 
@@ -154,7 +153,7 @@ public class AnnotationsAnalyzerTest {
         }
 
         public @NotNull BooleanSubject isNullableField() {
-            boolean isNullable = AnnotationsAnalyzer.isNullableField((Field) element);
+            boolean isNullable = AnnotationsAnalyzer.isNullableField(element);
             return assertThat(isNullable);
         }
 

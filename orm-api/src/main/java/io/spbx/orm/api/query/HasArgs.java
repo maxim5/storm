@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * An interface for all pieces of an SQL query that have arguments (possibly unresolved or empty).
- * The args correspond to the <code>"?"</code> in the current piece of SQL.
+ * The args correspond to the {@code "?"} in the current piece of SQL.
  *
  * @see Args
  */

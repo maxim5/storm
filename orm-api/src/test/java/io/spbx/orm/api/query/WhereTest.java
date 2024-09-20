@@ -1,6 +1,7 @@
 package io.spbx.orm.api.query;
 
 import io.spbx.orm.testing.FakeColumn;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.orm.api.query.CompareType.GE;
@@ -8,6 +9,7 @@ import static io.spbx.orm.api.query.CompareType.LE;
 import static io.spbx.orm.api.query.Shortcuts.*;
 import static io.spbx.orm.testing.AssertSql.assertThat;
 
+@Tag("fast")
 public class WhereTest {
     @Test
     public void compare_expr() {

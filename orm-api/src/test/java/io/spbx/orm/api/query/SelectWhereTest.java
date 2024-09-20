@@ -5,11 +5,13 @@ import io.spbx.orm.api.Engine;
 import io.spbx.orm.testing.AssertSql;
 import io.spbx.orm.testing.FakeColumn;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.orm.api.query.Shortcuts.num;
 import static io.spbx.orm.testing.AssertSql.assertReprThrows;
 
+@Tag("fast")
 public class SelectWhereTest {
     @Test
     public void select_column_from_table() {

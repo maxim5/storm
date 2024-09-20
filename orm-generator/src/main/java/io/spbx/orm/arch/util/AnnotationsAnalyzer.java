@@ -9,11 +9,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
-import java.lang.reflect.Field;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static io.spbx.orm.arch.InvalidSqlModelException.failIf;
+import static io.spbx.util.base.BasicExceptions.newInternalError;
 import static io.spbx.util.reflect.BasicAnnotations.getOptionalAnnotation;
 
 public class AnnotationsAnalyzer {
@@ -31,7 +31,13 @@ public class AnnotationsAnalyzer {
         return name1.or(() -> name2);
     }
 
-    public static boolean isPrimaryKeyField(@NotNull Field field, @NotNull ModelInput input) {
+    public static boolean isPrimaryKeyField(@NotNull JavaField field) {
+        return isPrimaryKeyField(field, ModelInput.of(field.ownerClass()));
+    }
+
+    public static boolean isPrimaryKeyField(@NotNull JavaField field, @NotNull ModelInput input) {
+        assert field.ownerClass() == input.modelClass() :
+            newInternalError("Field `%s` doesn't match the model input `%s`", field, input);
         String fieldName = field.getName();
         return fieldName.equals("id") ||
             fieldName.equals(Naming.idJavaName(input.javaModelName())) ||
@@ -44,7 +50,7 @@ public class AnnotationsAnalyzer {
         return merge(getOptionalAnnotation(elem, Sql.class).map(Sql::unique), getOptionalAnnotation(elem, Sql.Unique.class));
     }
 
-    public static boolean isNullableField(@NotNull Field field) {
+    public static boolean isNullableField(@NotNull JavaField field) {
         for (Class<? extends Annotation> annotation : NULLABLE_ANNOTATIONS) {
             if (getOptionalAnnotation(field, annotation).isPresent()) {
                 return true;

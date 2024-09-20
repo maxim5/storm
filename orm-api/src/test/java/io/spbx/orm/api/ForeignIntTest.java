@@ -1,10 +1,12 @@
 package io.spbx.orm.api;
 
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
+@Tag("fast")
 public class ForeignIntTest implements BaseForeignTest<Integer, ForeignInt<String>> {
     @Test
     public void isMatch_simple() {

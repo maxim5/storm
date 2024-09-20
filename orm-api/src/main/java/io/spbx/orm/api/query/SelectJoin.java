@@ -12,7 +12,7 @@ import static io.spbx.orm.api.query.Args.flattenArgsOf;
 import static io.spbx.orm.api.query.Representables.joinWithLines;
 
 /**
- * A <code>SELECT ... FROM ... JOIN ...</code> query.
+ * A {@code SELECT ... FROM ... JOIN ...} query.
  */
 @Immutable
 public class SelectJoin extends Unit implements TypedSelectQuery {
