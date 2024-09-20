@@ -14,6 +14,7 @@ dependencies {
     implementation("com.google.flogger:flogger:0.8")
     implementation("org.jetbrains:annotations:24.1.0")         // @NotNull and @Nullable are necessary at runtime
     implementation("com.google.guava:guava:33.2.0-jre")
+    implementation("org.ow2.asm:asm:9.7")
 }
 
 dependencies {
