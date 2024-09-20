@@ -8,6 +8,7 @@ import io.spbx.orm.arch.model.JdbcType;
 import io.spbx.orm.arch.model.PojoArch;
 import io.spbx.orm.testing.FakeModelAdaptersLocator;
 import io.spbx.util.base.Maybe;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -19,6 +20,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static io.spbx.orm.arch.factory.TestingArch.assertThat;
 
+@Tag("fast")
 public class RecursivePojoArchFactoryTest {
     private final FakeModelAdaptersLocator locator = FakeModelAdaptersLocator.empty();
     private final RecursivePojoArchFactory factory = new RecursivePojoArchFactory(TestingArch.newRunContext(locator));

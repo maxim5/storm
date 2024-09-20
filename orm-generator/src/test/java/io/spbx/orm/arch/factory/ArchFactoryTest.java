@@ -9,11 +9,14 @@ import io.spbx.orm.api.ForeignObj;
 import io.spbx.orm.api.annotate.Model;
 import io.spbx.orm.api.annotate.Sql;
 import io.spbx.orm.arch.InvalidSqlModelException;
+import io.spbx.orm.arch.factory.MoreTestingArchClasses.AlsoProtectedFieldPublicGetterDerived;
 import io.spbx.orm.arch.model.JdbcType;
+import io.spbx.orm.arch.testing.TestingArchClasses.ProtectedFieldPublicGetterDerived;
 import io.spbx.orm.testing.FakeModelAdaptersLocator;
 import io.spbx.util.base.Maybe;
 import io.spbx.util.base.Pair;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -34,18 +37,19 @@ import static io.spbx.orm.arch.factory.TestingArch.buildTableArch;
 import static io.spbx.util.testing.TestingBasics.listOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Tag("fast")
 public class ArchFactoryTest {
     /** Generic tables **/
 
     @Test
-    void empty_table() {
+    public void empty_table() {
         record SimpleUser(int foo) {}
 
         assertThat(buildTableArch(SimpleUser.class));  // maybe should throw?
     }
 
     @Test
-    void default_table() {
+    public void default_table() {
         record SimpleUser(int foo) {}
 
         assertThat(buildTableArch(SimpleUser.class))
@@ -55,7 +59,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void renamed_model_table() {
+    public void renamed_model_table() {
         @Model(javaName = "MyUser") record SimpleUser(int foo) {}
 
         assertThat(buildTableArch(SimpleUser.class))
@@ -65,7 +69,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void renamed_all_table() {
+    public void renamed_all_table() {
         @Model(javaName = "MyUser", sqlName = "users", javaTableName = "UserTable") record SimpleUser(int foo) {}
 
         assertThat(buildTableArch(SimpleUser.class))
@@ -77,7 +81,7 @@ public class ArchFactoryTest {
     /** Single usual field **/
 
     @Test
-    void single_field_int() {
+    public void single_field_int() {
         record User(int foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -90,7 +94,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_long() {
+    public void single_field_long() {
         record User(long foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -103,7 +107,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_boolean() {
+    public void single_field_boolean() {
         record User(boolean foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -116,7 +120,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_string() {
+    public void single_field_string() {
         record User(String foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -129,7 +133,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_integer() {
+    public void single_field_integer() {
         record User(Integer foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -142,7 +146,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_char() {
+    public void single_field_char() {
         record User(char foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -156,7 +160,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_int_renamed() {
+    public void single_field_int_renamed() {
         record User(@Sql(name = "bar") int foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -169,7 +173,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_enum() {
+    public void single_field_enum() {
         record User(Maybe bool) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("bool")
@@ -182,7 +186,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_complex() {
+    public void single_field_complex() {
         record Tuple(int a, String b) {}
         record User(Tuple foo) {}
 
@@ -197,7 +201,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_complex_standard_point() {
+    public void single_field_complex_standard_point() {
         record User(Point point) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("point")
@@ -211,7 +215,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_optional() {
+    public void single_field_optional() {
         record User(Optional<Integer> opt) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("opt")
@@ -224,7 +228,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_atomic_integer() {
+    public void single_field_atomic_integer() {
         record User(AtomicInteger atomic) {}
 
         FakeModelAdaptersLocator locator = FakeModelAdaptersLocator.empty();
@@ -239,7 +243,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_atomic_reference() {
+    public void single_field_atomic_reference() {
         record User(AtomicReference<Integer> atomic) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("atomic")
@@ -254,7 +258,7 @@ public class ArchFactoryTest {
     /** Single primary key field **/
 
     @Test
-    void single_field_int_pk() {
+    public void single_field_int_pk() {
         record User(int userId) {}
 
         assertThat(buildTableArch(User.class)).hasFields(PRIMARY_INT).hasSingleFieldThat("userId")
@@ -267,7 +271,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_int_pk_just_id() {
+    public void single_field_int_pk_just_id() {
         record User(int id) {}
 
         assertThat(buildTableArch(User.class)).hasFields(PRIMARY_INT).hasSingleFieldThat("id")
@@ -280,7 +284,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_long_pk() {
+    public void single_field_long_pk() {
         record User(long userId) {}
 
         assertThat(buildTableArch(User.class)).hasFields(PRIMARY_LONG).hasSingleFieldThat("userId")
@@ -293,7 +297,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_string_pk() {
+    public void single_field_string_pk() {
         record User(String userId) {}
 
         assertThat(buildTableArch(User.class)).hasFields(PRIMARY_OBJ).hasSingleFieldThat("userId")
@@ -306,7 +310,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_integer_pk() {
+    public void single_field_integer_pk() {
         record User(Integer userId) {}
 
         assertThat(buildTableArch(User.class)).hasFields(PRIMARY_OBJ).hasSingleFieldThat("userId")
@@ -319,7 +323,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_int_pk_annotated() {
+    public void single_field_int_pk_annotated() {
         record User(@Sql(primary = true) int userKey) {}
 
         assertThat(buildTableArch(User.class)).hasFields(PRIMARY_INT).hasSingleFieldThat("userKey")
@@ -332,7 +336,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_string_pk_annotated() {
+    public void single_field_string_pk_annotated() {
         record User(@PK String userKey) {}
 
         assertThat(buildTableArch(User.class)).hasFields(PRIMARY_OBJ).hasSingleFieldThat("userKey")
@@ -347,7 +351,7 @@ public class ArchFactoryTest {
     /** Single foreign key field **/
 
     @Test
-    void single_field_int_fk() {
+    public void single_field_int_fk() {
         record Type(int id) {}
         record User(ForeignInt<Type> type) {}
 
@@ -361,7 +365,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_long_fk() {
+    public void single_field_long_fk() {
         record Type(long typeId) {}
         record User(ForeignLong<Type> type) {}
 
@@ -375,7 +379,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_string_fk() {
+    public void single_field_string_fk() {
         record Type(String typeId) {}
         record User(ForeignObj<String, Type> type) {}
 
@@ -391,7 +395,7 @@ public class ArchFactoryTest {
     /** Single field with default **/
 
     @Test
-    void single_field_int_with_default() {
+    public void single_field_int_with_default() {
         record User(@Default("0") int foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -404,7 +408,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_long_with_default() {
+    public void single_field_long_with_default() {
         record User(@Default("-1") long foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -417,7 +421,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_string_with_default() {
+    public void single_field_string_with_default() {
         record User(@Default("") String foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -430,7 +434,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_int_pk_annotated_with_default() {
+    public void single_field_int_pk_annotated_with_default() {
         record User(@Sql(primary = true, defaults = "-1") int userKey) {}
 
         assertThat(buildTableArch(User.class)).hasFields(PRIMARY_INT).hasSingleFieldThat("userKey")
@@ -443,7 +447,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_complex_with_default() {
+    public void single_field_complex_with_default() {
         record Tuple(int a, String b) {}
         record User(@Sql(defaults = {"0", ""}) Tuple foo) {}
 
@@ -461,7 +465,7 @@ public class ArchFactoryTest {
     /** Single unique field **/
 
     @Test
-    void single_field_int_unique() {
+    public void single_field_int_unique() {
         record User(@Sql(unique = true) int foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -474,7 +478,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_long_unique() {
+    public void single_field_long_unique() {
         record User(@Sql(unique = true) long foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -487,7 +491,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_string_unique() {
+    public void single_field_string_unique() {
         record User(@Sql(unique = true) String foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -500,7 +504,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_integer_unique() {
+    public void single_field_integer_unique() {
         record User(@Sql(unique = true) Integer foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -513,7 +517,7 @@ public class ArchFactoryTest {
     }
 
     @Test
-    void single_field_string_unique_shortcut_annotation() {
+    public void single_field_string_unique_shortcut_annotation() {
         record User(@Sql.Unique String foo) {}
 
         assertThat(buildTableArch(User.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
@@ -521,6 +525,30 @@ public class ArchFactoryTest {
             .hasInJava(String.class, "foo()")
             .isSingleColumn("foo", JdbcType.String)
             .hasConstraints(UNIQUE.nonnull())
+            .doesNotHaveDefault()
+            .isNativelySupportedType();
+    }
+
+    /** Special cases **/
+
+    @Test
+    public void inherited_same_package_protected_fields() {
+        assertThat(buildTableArch(ProtectedFieldPublicGetterDerived.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
+            .isFromTable("testing_arch_classes_protected_field_public_getter_derived")
+            .hasInJava(int.class, "foo")
+            .isSingleColumn("foo", JdbcType.Int)
+            .hasConstraints(ORDINARY.nonnull())
+            .doesNotHaveDefault()
+            .isNativelySupportedType();
+    }
+
+    @Test
+    public void inherited_another_package_protected_fields() {
+        assertThat(buildTableArch(AlsoProtectedFieldPublicGetterDerived.class)).hasFields(ONLY_ORDINARY).hasSingleFieldThat("foo")
+            .isFromTable("more_testing_arch_classes_also_protected_field_public_getter_derived")
+            .hasInJava(int.class, "foo()")
+            .isSingleColumn("foo", JdbcType.Int)
+            .hasConstraints(ORDINARY.nonnull())
             .doesNotHaveDefault()
             .isNativelySupportedType();
     }
@@ -590,6 +618,15 @@ public class ArchFactoryTest {
         Truth.assertThat(e).hasMessageThat().contains("Song.author");
         Truth.assertThat(e).hasCauseThat().hasMessageThat()
             .isEqualTo("Foreign model `User` primary key `int` doesn't match the foreign key");
+    }
+
+    @Test
+    public void invalid_nested_inner_class() {
+        class Nested {}
+
+        InvalidSqlModelException e = assertInvalidModel(Nested.class);
+        Truth.assertThat(e).hasMessageThat().contains("Nested");
+        Truth.assertThat(e).hasCauseThat().hasMessageThat().contains("is inner nested in");
     }
 
     @CanIgnoreReturnValue

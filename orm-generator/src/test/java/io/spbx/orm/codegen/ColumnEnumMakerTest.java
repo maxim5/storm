@@ -2,6 +2,7 @@ package io.spbx.orm.codegen;
 
 import io.spbx.orm.arch.model.Column;
 import io.spbx.orm.arch.model.JdbcType;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 import static io.spbx.orm.codegen.AssertSnippet.assertThatJava;
 import static io.spbx.util.testing.TestingBasics.listOf;
 
-
+@Tag("fast")
 public class ColumnEnumMakerTest {
     @Test
     public void make_different_column_types() {

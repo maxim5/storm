@@ -55,13 +55,13 @@ public interface BaseTable<E> extends Iterable<E>, HasEngine, HasRunner {
     // Size
 
     /**
-     * Returns the table size (result of <code>SELECT COUNT(*)</code> query).
+     * Returns the table size (result of {@code SELECT COUNT(*)} query).
      */
     int count();
 
     /**
      * Returns the count of the rows matching the {@code filter}
-     * (result of <code>SELECT COUNT(*) ...[filter]</code> query).
+     * (result of {@code SELECT COUNT(*) ...[filter]} query).
      */
     int count(@NotNull Filter filter);
 
@@ -91,11 +91,11 @@ public interface BaseTable<E> extends Iterable<E>, HasEngine, HasRunner {
     /**
      * Returns an iterator over all entries in the table.
      * <b>Important</b>: the caller is responsible for closing the iterator:
-     * <pre>
-     *     try (ResultSetIterator&lt;Entity&gt; iterator = table.iterator()) {
+     * {@snippet lang="java" :
+     *     try (ResultSetIterator<Entity> iterator = table.iterator()) {
      *         iterator.forEachRemaining(action);
      *     }
-     * </pre>
+     * }
      */
     @Override
     @MustBeClosed
@@ -104,11 +104,11 @@ public interface BaseTable<E> extends Iterable<E>, HasEngine, HasRunner {
     /**
      * Returns an iterator over the entries matching the {@code filter}.
      * <b>Important</b>: the caller is responsible for closing the iterator:
-     * <pre>
-     *     try (ResultSetIterator&lt;Entity&gt; iterator = table.iterator(filter)) {
+     * {@snippet lang="java" :
+     *     try (ResultSetIterator<Entity> iterator = table.iterator(filter)) {
      *         iterator.forEachRemaining(action);
      *     }
-     * </pre>
+     * }
      */
     @MustBeClosed
     @NotNull ResultSetIterator<E> iterator(@NotNull Filter filter);

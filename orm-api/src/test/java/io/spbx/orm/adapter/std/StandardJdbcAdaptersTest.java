@@ -25,6 +25,7 @@ import io.spbx.util.base.Int128;
 import io.spbx.util.func.Reversible;
 import io.spbx.util.io.BasicNet;
 import io.spbx.util.testing.ext.TimeZoneExtension;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -41,6 +42,7 @@ import java.util.TimeZone;
 import static io.spbx.util.func.Reversibles.fromNotNullFunctions;
 import static io.spbx.util.testing.AssertBasics.assertReversibleRoundtrip;
 
+@Tag("fast")
 public class StandardJdbcAdaptersTest {
     @RegisterExtension private static final TimeZoneExtension GMT = TimeZoneExtension.force(TimeZone.getTimeZone("GMT"));
 

@@ -5,6 +5,7 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.api.ForeignInt;
 import io.spbx.orm.arch.model.TableArch;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.orm.api.ReadFollow.*;
@@ -12,6 +13,7 @@ import static io.spbx.orm.arch.factory.TestingArch.buildTableArch;
 import static io.spbx.orm.codegen.AssertSnippet.assertThatSql;
 import static io.spbx.util.testing.TestingBasics.listOf;
 
+@Tag("fast")
 public class SelectMakerTest {
     @Test
     public void one_level() {

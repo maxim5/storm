@@ -5,11 +5,10 @@ import io.spbx.util.base.BasicStrings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.VisibleForTesting;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Parameter;
 
 public class Naming {
-    public static @NotNull String fieldSqlName(@NotNull Field field) {
+    public static @NotNull String fieldSqlName(@NotNull JavaField field) {
          return AnnotationsAnalyzer.getSqlName(field).orElseGet(() -> fieldSqlName(field.getName()));
     }
 

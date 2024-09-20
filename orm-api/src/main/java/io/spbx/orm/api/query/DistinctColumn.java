@@ -4,7 +4,7 @@ import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a <code>DISTINCT</code> column.
+ * Represents a {@code DISTINCT} column.
  */
 @Immutable
 public class DistinctColumn extends Unit implements Term {

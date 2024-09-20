@@ -2,6 +2,7 @@ package io.spbx.orm.api.query;
 
 import io.spbx.orm.testing.FakeColumn;
 import io.spbx.orm.testing.PersonTableData.PersonColumn;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.orm.api.query.Shortcuts.*;
@@ -9,6 +10,7 @@ import static io.spbx.orm.api.query.TermType.*;
 import static io.spbx.orm.testing.AssertSql.assertReprThrows;
 import static io.spbx.orm.testing.AssertSql.assertTerm;
 
+@Tag("fast")
 public class FuncTest {
     @Test
     public void aggregations() {

@@ -20,7 +20,7 @@ import static io.spbx.util.base.EasyCast.castAny;
  * An adapter that allows to iterate over the JDBC {@link ResultSet} via {@link Iterator}.
  * The {@link ResultSetIterator} takes in a {@code converter} to convert rows to {@code E} objects.
  * Note that {@link ResultSetIterator} is {@link Closeable} and is recommended to be used
- * with a <code>try-resource</code> syntax.
+ * with a {@code try-resource} syntax.
  */
 public class ResultSetIterator<E> implements Iterator<E>, Closeable {
     private final ResultSet resultSet;

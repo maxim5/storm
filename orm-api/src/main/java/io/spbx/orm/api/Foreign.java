@@ -11,9 +11,9 @@ import java.util.Objects;
  * In case Table API retrieves a full entity (following foreign references), the {@link Foreign} instance in addition
  * contains the referenced entity of type {@link E} (which too can be shallow or full).
  * <p>
- * If the column does not permit <code>NULL</code>s, then the id is always going to be set. Otherwise, it's possible
- * to have an empty {@link Foreign} which corresponds to <code>NULL</code> value in the DB.
- * If the key is <code>null</code>, then the entity must be <code>null</code>.
+ * If the column does not permit {@code NULL}s, then the id is always going to be set. Otherwise, it's possible
+ * to have an empty {@link Foreign} which corresponds to {@code NULL} value in the DB.
+ * If the key is {@code null}, then the entity must be {@code null}.
  * <p>
  * Instances of {@link Foreign} are essentially immutable, but can be changed from shallow to full, i.e. updated with
  * an entity reference.
@@ -25,12 +25,12 @@ import java.util.Objects;
  */
 public interface Foreign<I, E> {
     /**
-     * Returns the foreign key (id). If the column does not permit <code>NULL</code>s, it is always set.
+     * Returns the foreign key (id). If the column does not permit {@code NULL}s, it is always set.
      */
     @Nullable I getFk();
 
     /**
-     * Returns the non-null foreign key (id). Applicable to cases when the column does not permit <code>NULL</code>s.
+     * Returns the non-null foreign key (id). Applicable to cases when the column does not permit {@code NULL}s.
      */
     default @NotNull I getFkOrDie() {
         I result = getFk();
@@ -45,7 +45,7 @@ public interface Foreign<I, E> {
 
     /**
      * Returns whether this instance doesn't hold any reference.
-     * If the column does not permit <code>NULL</code>s, it's always false.
+     * If the column does not permit {@code NULL}s, it's always false.
      */
     default boolean isEmpty() {
         return getFk() == null;
@@ -53,7 +53,7 @@ public interface Foreign<I, E> {
 
     /**
      * Returns whether this instance holds any reference.
-     * If the column does not permit <code>NULL</code>s, it's always true.
+     * If the column does not permit {@code NULL}s, it's always true.
      */
     default boolean isPresent() {
         return !isEmpty();
@@ -75,14 +75,14 @@ public interface Foreign<I, E> {
 
     /**
      * Sets the {@code entity} reference if it's not present in this instance.
-     * Fails if this {@link Foreign} instance is empty, i.e. holds a <code>NULL</code> foreign key.
+     * Fails if this {@link Foreign} instance is empty, i.e. holds a {@code NULL} foreign key.
      * @return true if updated
      */
     boolean setEntityIfMissing(@NotNull E entity);
 
     /**
      * Sets the {@code entity} regardless of the current present value.
-     * Fails if this {@link Foreign} instance is empty, i.e. holds a <code>NULL</code> foreign key.
+     * Fails if this {@link Foreign} instance is empty, i.e. holds a {@code NULL} foreign key.
      */
     void setEntityUnconditionally(@NotNull E entity);
 

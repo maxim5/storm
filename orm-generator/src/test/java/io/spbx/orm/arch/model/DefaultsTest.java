@@ -1,12 +1,14 @@
 package io.spbx.orm.arch.model;
 
 import io.spbx.orm.arch.InvalidSqlModelException;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 import static io.spbx.orm.arch.model.Defaults.EMPTY_COLUMN_DEFAULTS;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Tag("fast")
 public class DefaultsTest {
     @Test
     public void of_one_column_empty() {

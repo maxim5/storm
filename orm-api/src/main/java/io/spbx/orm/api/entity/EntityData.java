@@ -15,11 +15,11 @@ import java.sql.SQLException;
  * update the {@link PreparedStatement} with {@code set} methods.
  * <p>
  * Example data:
- * <pre>
+ * {@snippet lang="TEXT" :
  *     Width | Height
  *     --------------
  *     100   | 200
- * </pre>
+ * }
  * This row can be represented by an array of 2.
  *
  * @param <D> the underlying type used by implementations to store the row

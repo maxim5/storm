@@ -3,7 +3,7 @@ package io.spbx.orm.api.query;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents an SQL query which selects some data from the DB. May include one or more <code>SELECT</code> clauses,
+ * Represents an SQL query which selects some data from the DB. May include one or more {@code SELECT} clauses,
  * as well as filtering, grouping, etc.
  */
 public interface SelectQuery extends Representable, HasArgs {

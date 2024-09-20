@@ -14,6 +14,7 @@ import io.spbx.util.prima.wrap.MutableInt;
 import io.spbx.util.prima.wrap.MutableLong;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -22,6 +23,7 @@ import static io.spbx.orm.arch.factory.TestingArch.buildTableArch;
 import static io.spbx.orm.codegen.AssertSnippet.assertThatJava;
 import static io.spbx.util.testing.TestingBasics.listOf;
 
+@Tag("fast")
 public class ValuesArrayMakerTest {
     @Test
     public void primitive_columns() {

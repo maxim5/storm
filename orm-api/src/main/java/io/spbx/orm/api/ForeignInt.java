@@ -10,7 +10,7 @@ import java.util.function.ToIntFunction;
 import static io.spbx.util.base.EasyCast.castAny;
 
 /**
- * A {@link Foreign} implementation for integer FK. Note: zero ids are treated as <code>NULL</code>s.
+ * A {@link Foreign} implementation for integer FK. Note: zero ids are treated as {@code NULL}s.
  */
 public final class ForeignInt<E> implements Foreign<Integer, E> {
     private static final ForeignInt<?> EMPTY = new ForeignInt<>(0, null);

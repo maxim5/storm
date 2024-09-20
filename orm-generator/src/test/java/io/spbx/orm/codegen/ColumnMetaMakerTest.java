@@ -11,11 +11,13 @@ import io.spbx.orm.arch.model.TableArch;
 import io.spbx.orm.arch.model.TableField;
 import io.spbx.util.base.Pair;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.spbx.orm.arch.factory.TestingArch.buildTableArch;
 
-class ColumnMetaMakerTest {
+@Tag("fast")
+public class ColumnMetaMakerTest {
     @Test
     public void int_column() {
         record User(int foo) {}

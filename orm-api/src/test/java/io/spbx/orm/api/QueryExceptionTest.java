@@ -2,11 +2,13 @@ package io.spbx.orm.api;
 
 import com.carrotsearch.hppc.IntArrayList;
 import com.carrotsearch.hppc.LongArrayList;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 import static io.spbx.util.testing.TestingBasics.*;
 
+@Tag("fast")
 public class QueryExceptionTest {
     @Test
     public void message_format() {

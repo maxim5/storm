@@ -7,6 +7,8 @@ import io.spbx.util.base.OneOf;
 import io.spbx.util.collect.Streamer;
 import io.spbx.util.prima.wrap.MutableInt;
 import io.spbx.util.reflect.BasicAnnotations;
+import io.spbx.util.reflect.BasicMembers.Fields;
+import io.spbx.util.reflect.BasicMembers.Methods;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.VisibleForTesting;
@@ -17,7 +19,7 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Optional;
 
-import static io.spbx.util.reflect.BasicMembers.*;
+import static io.spbx.util.reflect.BasicMembers.isPublicStatic;
 
 public class AdapterApi implements ApiFormatter<AdapterApi.AdapterApiCallFormatter> {
     private static final String CREATE_INSTANCE = "createInstance";
@@ -76,13 +78,13 @@ public class AdapterApi implements ApiFormatter<AdapterApi.AdapterApiCallFormatt
     private static @NotNull String classToStaticRef(@NotNull Class<?> klass) {
         String canonicalName = Naming.shortCanonicalJavaName(klass);
 
-        if (hasMethod(klass, Scope.ALL, method -> isPublicStatic(method) && method.getName().equals(CREATE_INSTANCE)) &&
-            hasMethod(klass, Scope.ALL, method -> isPublicStatic(method) && method.getName().equals(FILL_VALUES)) &&
-            hasMethod(klass, Scope.ALL, method -> isPublicStatic(method) && method.getName().equals(NEW_ARRAY))) {
+        if (Methods.of(klass).has(method -> isPublicStatic(method) && method.getName().equals(CREATE_INSTANCE)) &&
+            Methods.of(klass).has(method -> isPublicStatic(method) && method.getName().equals(FILL_VALUES)) &&
+            Methods.of(klass).has(method -> isPublicStatic(method) && method.getName().equals(NEW_ARRAY))) {
             return canonicalName;
         }
 
-        Field staticField = findPublicStaticInstance(klass);
+        Field staticField = Fields.of(klass).findPublicStaticInstance();
         if (staticField != null) {
             return "%s.%s".formatted(canonicalName, staticField.getName());
         }
@@ -129,7 +131,7 @@ public class AdapterApi implements ApiFormatter<AdapterApi.AdapterApiCallFormatt
     }
 
     private static @NotNull Parameter[] getCreationParameters(@NotNull Class<?> adapterClass) {
-        Method method = findMethod(adapterClass, Scope.DECLARED, CREATE_INSTANCE);
+        Method method = Methods.of(adapterClass).find(CREATE_INSTANCE);
         InvalidSqlModelException.failIf(method == null, "JDBC adapter does not implement `%s` method: %s", CREATE_INSTANCE, adapterClass);
         return method.getParameters();
     }

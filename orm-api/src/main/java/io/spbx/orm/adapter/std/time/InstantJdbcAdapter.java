@@ -18,9 +18,9 @@ import java.time.Instant;
  * <p>
  * Other possible ways:
  * <ul>
- *     <li><code>@Sql.Via(Instant96Codec.class) Instant field</code></li>
- *     <li><code>@Sql.Via(Instant64MicroCodec.class) Instant field</code></li>
- *     <li><code>@Sql.Via(Instant64NanoCodec.class) Instant field</code></li>
+ *     <li>{@code @Sql.Via(Instant96Codec.class) Instant field}</li>
+ *     <li>{@code @Sql.Via(Instant64MicroCodec.class) Instant field}</li>
+ *     <li>{@code @Sql.Via(Instant64NanoCodec.class) Instant field}</li>
  * </ul>
  *
  * @see io.spbx.webby.db.codec.std.time.Instant96Codec

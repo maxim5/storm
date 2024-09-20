@@ -9,6 +9,7 @@ import io.spbx.orm.api.query.Where;
 import io.spbx.orm.testing.FakeEnumColumn;
 import io.spbx.orm.testing.MockingJdbc;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
@@ -21,6 +22,7 @@ import static io.spbx.util.collect.BasicIterables.asList;
 import static io.spbx.util.testing.TestingBasics.listOf;
 import static io.spbx.util.testing.TestingBasics.mapOf;
 
+@Tag("fast")
 public class BatchEntityDataTest {
     @ParameterizedTest
     @EnumSource(Scenario.class)

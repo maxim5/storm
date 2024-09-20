@@ -13,7 +13,7 @@ import static io.spbx.orm.api.query.Args.flattenArgsOf;
 import static io.spbx.orm.api.query.InvalidQueryException.newInvalidQueryException;
 
 /**
- * A <code>UNION</code> of several {@link SelectQuery} statements.
+ * A {@code UNION} of several {@link SelectQuery} statements.
  */
 @Immutable
 public class SelectUnion extends Unit implements TypedSelectQuery {

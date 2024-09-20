@@ -16,37 +16,34 @@ import io.spbx.orm.arch.model.TableArch;
 import io.spbx.orm.arch.model.TableField;
 import io.spbx.orm.arch.util.AnnotationsAnalyzer;
 import io.spbx.orm.arch.util.JavaClassAnalyzer;
+import io.spbx.orm.arch.util.JavaField;
 import io.spbx.orm.arch.util.Naming;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
 class TableFieldArchFactory {
     private final TableArch table;
-    private final Field field;
-    private final ModelInput input;
+    private final JavaField field;
 
     private final FieldResolver fieldResolver;
     private final RecursivePojoArchFactory pojoArchFactory;
 
     public TableFieldArchFactory(@NotNull RunContext runContext,
                                  @NotNull TableArch table,
-                                 @NotNull Field field,
-                                 @NotNull ModelInput input) {
+                                 @NotNull JavaField field) {
         this.table = table;
         this.field = field;
-        this.input = input;
         this.fieldResolver = new FieldResolver(runContext);
         this.pojoArchFactory = new RecursivePojoArchFactory(runContext);
     }
 
     public @NotNull TableField buildTableField() {
         ModelField modelField = JavaClassAnalyzer.toModelField(field);
-        boolean isPrimaryKey = AnnotationsAnalyzer.isPrimaryKeyField(field, input);
+        boolean isPrimaryKey = AnnotationsAnalyzer.isPrimaryKeyField(field);
         boolean isUnique = AnnotationsAnalyzer.isUniqueField(field);
         boolean isNullable = AnnotationsAnalyzer.isNullableField(field);
         String[] defaults = AnnotationsAnalyzer.getDefaults(field);

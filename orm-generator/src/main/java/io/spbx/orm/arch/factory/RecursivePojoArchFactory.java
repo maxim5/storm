@@ -12,9 +12,8 @@ import io.spbx.orm.arch.model.PojoFieldNative;
 import io.spbx.orm.arch.model.PojoFieldNested;
 import io.spbx.orm.arch.util.AnnotationsAnalyzer;
 import io.spbx.orm.arch.util.JavaClassAnalyzer;
+import io.spbx.orm.arch.util.JavaField;
 import org.jetbrains.annotations.NotNull;
-
-import java.lang.reflect.Field;
 
 import static io.spbx.orm.arch.InvalidSqlModelException.newInvalidSqlModelException;
 
@@ -27,7 +26,7 @@ class RecursivePojoArchFactory {
         this.fieldResolver = new FieldResolver(runContext);
     }
 
-    public @NotNull PojoArch buildPojoArchFor(@NotNull Field field) {
+    public @NotNull PojoArch buildPojoArchFor(@NotNull JavaField field) {
         return buildPojoArchFor(field.getType());
     }
 

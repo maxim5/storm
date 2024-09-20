@@ -57,7 +57,7 @@ class ArchFactory {
         ImmutableList<TableField> fields = JavaClassAnalyzer.getAllFieldsOrdered(modelInput.modelClass()).stream()
             .map(field -> {
                 runContext.errorHandler().setCurrentField(field);
-                return new TableFieldArchFactory(runContext, table, field, modelInput).buildTableField();
+                return new TableFieldArchFactory(runContext, table, field).buildTableField();
             })
             .collect(ImmutableList.toImmutableList());
         runContext.errorHandler().dropCurrentField();
