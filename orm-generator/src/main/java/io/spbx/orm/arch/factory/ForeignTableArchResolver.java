@@ -59,9 +59,9 @@ class ForeignTableArchResolver {
             primaryKeyType = requireNonNull(foreignTable.primaryKeyField()).javaType();
         } else {
             // A hacky way to get the PK field for a foreign model that hasn't been built yet.
-            // Essentially, this duplicates the work of `buildTableField` above.
+            // Essentially, this duplicates the work of `TableFieldArchFactory.buildTableField()`.
             // In theory, should work for dependency cycles.
-            Class<?> foreignModelClass = field.ownerClass();
+            Class<?> foreignModelClass = foreignTable.modelClass();
             ModelInput foreignInput = runContext.inputs().findInputByModel(foreignModelClass).orElseThrow();
             Optional<JavaField> foreignPrimaryKeyField = JavaClassAnalyzer.getAllFieldsOrdered(foreignModelClass).stream()
                 .filter(f -> AnnotationsAnalyzer.isPrimaryKeyField(f, foreignInput))
@@ -73,13 +73,13 @@ class ForeignTableArchResolver {
         }
 
         assure(primaryKeyType == keyType,
-               "Foreign model `%s` primary key `%s` doesn't match the foreign key",
+               "Foreign model `%s` primary key `%s` doesn't match the foreign key. Expected key type: `%s`",
                entityType.getSimpleName(), primaryKeyType, keyType);
 
         JdbcType jdbcType = JdbcType.findByMatchingNativeType(primaryKeyType);
         failIf(jdbcType == null,
                "Foreign model `%s` primary key `%s` must be natively supported type (i.e., primitive or String)",
-               entityType.getSimpleName(), primaryKeyType, keyType);
+               entityType.getSimpleName(), primaryKeyType);
 
         return Pair.of(foreignTable, jdbcType);
     }

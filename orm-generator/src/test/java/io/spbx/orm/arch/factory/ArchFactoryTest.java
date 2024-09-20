@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -617,7 +617,7 @@ public class ArchFactoryTest {
         InvalidSqlModelException e = assertInvalidModel(User.class, Song.class);
         Truth.assertThat(e).hasMessageThat().contains("Song.author");
         Truth.assertThat(e).hasCauseThat().hasMessageThat()
-            .isEqualTo("Foreign model `User` primary key `int` doesn't match the foreign key");
+            .isEqualTo("Foreign model `User` primary key `int` doesn't match the foreign key. Expected key type: `long`");
     }
 
     @Test

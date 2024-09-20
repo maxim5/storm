@@ -201,7 +201,7 @@ public class JavaClassAnalyzer {
         try {
             while (className != null) {
                 String superPackageName = AsmClassScanner.packageName(className);
-                AsmClassScanner scanner = AsmClassScanner.of(JavaClassAnalyzer.class.getClassLoader(), className);
+                AsmClassScanner scanner = AsmClassScanner.of(field.ownerClass().getClassLoader(), className);   // !!!
                 List<MethodData> methods = scanner.methods((access, name, descriptor, signature, exceptions) -> {
                     boolean isStatic = Access.isStatic(access);
                     boolean isVisible = Access.isPublic(access) ||

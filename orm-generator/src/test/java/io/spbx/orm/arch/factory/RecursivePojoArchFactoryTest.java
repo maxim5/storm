@@ -11,7 +11,7 @@ import io.spbx.util.base.Maybe;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
