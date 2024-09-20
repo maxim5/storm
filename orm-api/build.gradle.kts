@@ -9,7 +9,7 @@ dependencies {
     compileOnly("com.google.errorprone:error_prone_annotations:2.28.0")
     compileOnly("com.google.flogger:flogger:0.8")
 
-    implementation("com.github.maxim5:java-basics:0.2.0")
+    implementation("com.github.maxim5:java-basics:0.2.1")
     implementation("com.github.maxim5:prima:0.1.4")
     implementation("com.google.guava:guava:33.2.0-jre")
     implementation("com.carrotsearch:hppc:0.10.0")
@@ -22,7 +22,7 @@ dependencies {
     testFixturesImplementation("org.jetbrains:annotations:24.1.0")
     testFixturesImplementation("com.carrotsearch:hppc:0.10.0")
     testFixturesImplementation("com.mockrunner:mockrunner-jdbc:2.0.7")
-    testFixturesImplementation("com.github.maxim5:java-basics:0.2.0:test-fixtures")
+    testFixturesImplementation("com.github.maxim5:java-basics:0.2.1:test-fixtures")
 }
 
 dependencies {
@@ -34,6 +34,6 @@ dependencies {
     testRuntimeOnly("com.google.flogger:flogger-log4j2-backend:0.8")
 
     testImplementation("com.mockrunner:mockrunner-jdbc:2.0.7")
-    testImplementation("com.github.maxim5:java-basics:0.2.0:test-fixtures")
+    testImplementation("com.github.maxim5:java-basics:0.2.1:test-fixtures")
     testImplementation("com.github.maxim5:prima:0.1.4:test-fixtures")
 }
