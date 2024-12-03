@@ -1,9 +1,9 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.api.Engine;
 import io.spbx.orm.testing.AssertSql;
 import io.spbx.orm.testing.FakeColumn;
+import io.spbx.util.base.annotate.CheckReturnValue;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

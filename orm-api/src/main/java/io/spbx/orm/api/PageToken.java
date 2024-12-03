@@ -1,9 +1,9 @@
 package io.spbx.orm.api;
 
-import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;

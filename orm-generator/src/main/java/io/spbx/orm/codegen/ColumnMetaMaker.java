@@ -4,7 +4,7 @@ import io.spbx.orm.api.TableMeta.ConstraintStatus;
 import io.spbx.orm.arch.model.Column;
 import io.spbx.orm.arch.model.ForeignTableField;
 import io.spbx.orm.arch.model.TableField;
-import io.spbx.util.text.BasicJoin;
+import io.spbx.util.base.str.BasicJoin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

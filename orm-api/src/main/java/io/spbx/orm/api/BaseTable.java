@@ -1,8 +1,6 @@
 package io.spbx.orm.api;
 
 import com.google.common.collect.Lists;
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import com.google.errorprone.annotations.MustBeClosed;
 import io.spbx.orm.api.entity.BatchEntityData;
 import io.spbx.orm.api.entity.EntityData;
 import io.spbx.orm.api.query.CompositeFilter;
@@ -11,6 +9,8 @@ import io.spbx.orm.api.query.Filter;
 import io.spbx.orm.api.query.LimitClause;
 import io.spbx.orm.api.query.Offset;
 import io.spbx.orm.api.query.Where;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
+import io.spbx.util.base.annotate.MustBeClosed;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,15 +55,26 @@ public interface BaseTable<E> extends Iterable<E>, HasEngine, HasRunner {
     // Size
 
     /**
-     * Returns the table size (result of {@code SELECT COUNT(*)} query).
+     * Returns the {@code int} table size (result of {@code SELECT COUNT(*)} query).
      */
     int count();
 
     /**
-     * Returns the count of the rows matching the {@code filter}
+     * Returns the {@code long} table size (result of {@code SELECT COUNT(*)} query).
+     */
+    long count64();
+
+    /**
+     * Returns the {@code int} count of the rows matching the {@code filter}
      * (result of {@code SELECT COUNT(*) ...[filter]} query).
      */
     int count(@NotNull Filter filter);
+
+    /**
+     * Returns the {@code long} count of the rows matching the {@code filter}
+     * (result of {@code SELECT COUNT(*) ...[filter]} query).
+     */
+    long count64(@NotNull Filter filter);
 
     /**
      * Returns whether the table is empty, i.e. contains 0 rows.

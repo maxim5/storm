@@ -2,6 +2,9 @@ package io.spbx.orm.api.query;
 
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
+
+@Immutable
 public enum CompareType implements Representable {
     EQ("="),
     NE("<>"),

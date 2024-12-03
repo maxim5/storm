@@ -1,6 +1,6 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
+import javax.annotation.concurrent.Immutable;
 
 @Immutable
 public class Offset extends Unit implements Filter, Representable {

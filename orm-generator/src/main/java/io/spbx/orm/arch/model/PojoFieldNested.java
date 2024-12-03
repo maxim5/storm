@@ -1,8 +1,8 @@
 package io.spbx.orm.arch.model;
 
-import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Objects;
 
 @Immutable

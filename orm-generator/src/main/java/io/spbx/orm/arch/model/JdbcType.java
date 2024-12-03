@@ -2,11 +2,14 @@ package io.spbx.orm.arch.model;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.primitives.Primitives;
-import io.spbx.util.collect.BasicMaps;
-import io.spbx.util.collect.MapBuilder;
+import io.spbx.util.collect.map.BasicMaps;
+import io.spbx.util.collect.map.MapBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
+
+@Immutable
 public enum JdbcType {
     Boolean(boolean.class),
     Int(int.class),

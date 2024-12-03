@@ -1,7 +1,7 @@
 package io.spbx.orm.api;
 
-import io.spbx.util.base.Unchecked;
-import io.spbx.util.collect.BasicMaps;
+import io.spbx.util.base.error.Unchecked;
+import io.spbx.util.collect.map.BasicMaps;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;

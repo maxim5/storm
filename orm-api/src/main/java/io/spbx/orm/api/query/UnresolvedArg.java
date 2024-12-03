@@ -1,8 +1,9 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.concurrent.Immutable;
 
 @Immutable
 public record UnresolvedArg(@NotNull String name, @Nullable Object defaultValue) {

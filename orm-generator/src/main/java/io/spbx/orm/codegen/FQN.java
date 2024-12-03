@@ -4,9 +4,12 @@ import io.spbx.orm.arch.model.JavaNameHolder;
 import io.spbx.orm.arch.util.Naming;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
+
 import static io.spbx.util.code.jvm.JavaNameValidator.validateJavaClassName;
 import static io.spbx.util.code.jvm.JavaNameValidator.validateJavaPackage;
 
+@Immutable
 record FQN(@NotNull String packageName, @NotNull String className) {
     public FQN {
         validateJavaPackage(packageName);

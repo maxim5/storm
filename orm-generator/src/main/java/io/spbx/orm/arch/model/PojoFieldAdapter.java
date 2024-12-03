@@ -1,10 +1,10 @@
 package io.spbx.orm.arch.model;
 
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.util.lazy.AtomicCacheCompute;
 import io.spbx.util.lazy.CacheCompute;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 import java.util.Objects;
 

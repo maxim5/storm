@@ -1,11 +1,11 @@
 package io.spbx.orm.api.query;
 
 import com.google.common.collect.ImmutableList;
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.BaseTable;
 import io.spbx.orm.api.TableMeta;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 
 import static io.spbx.orm.api.query.Args.flattenArgsOf;

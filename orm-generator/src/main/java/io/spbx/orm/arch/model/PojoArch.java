@@ -6,14 +6,16 @@ import io.spbx.util.lazy.AtomicCacheCompute;
 import io.spbx.util.lazy.CacheCompute;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import static io.spbx.util.base.BasicExceptions.newInternalError;
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
 import static io.spbx.util.code.jvm.JavaNameValidator.validateJavaIdentifier;
 
+@Immutable
 public final class PojoArch implements HasColumns {
     private final @NotNull Class<?> pojoType;
     private final @NotNull ImmutableList<PojoField> fields;

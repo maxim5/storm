@@ -3,11 +3,13 @@ package io.spbx.orm.adapter.std.chars;
 import io.spbx.orm.adapter.JdbcAdapt;
 import io.spbx.orm.adapter.JdbcSingleValueAdapter;
 import io.spbx.orm.api.ResultSetIterator;
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Stateless
 @JdbcAdapt(char[].class)
 public class CharArrayJdbcAdapter implements JdbcSingleValueAdapter<char[]>, ResultSetIterator.Converter<char[]> {
     public static final CharArrayJdbcAdapter ADAPTER = new CharArrayJdbcAdapter();

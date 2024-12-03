@@ -2,8 +2,6 @@ package io.spbx.orm.testing;
 
 import com.google.common.truth.Ordered;
 import com.google.common.truth.Truth;
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.api.debug.DebugSql;
 import io.spbx.orm.api.query.Args;
 import io.spbx.orm.api.query.InvalidQueryException;
@@ -12,6 +10,8 @@ import io.spbx.orm.api.query.Term;
 import io.spbx.orm.api.query.TermType;
 import io.spbx.orm.api.query.Unit;
 import io.spbx.orm.testing.AssertCode.CodeSubject;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
+import io.spbx.util.base.annotate.CheckReturnValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,8 +20,8 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static io.spbx.util.base.EasyCast.castAny;
-import static io.spbx.util.base.EasyCast.castToInt;
+import static io.spbx.util.base.lang.EasyCast.castAny;
+import static io.spbx.util.base.lang.EasyCast.castToInt;
 import static io.spbx.util.testing.TestingBasics.streamOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

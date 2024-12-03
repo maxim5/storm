@@ -5,6 +5,7 @@ import io.spbx.orm.api.query.Contextual;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -17,6 +18,7 @@ import java.util.List;
  *
  * @param <D> the underlying type used by implementations to store each {@code EntityData} (i.e., each chunk)
  */
+@Immutable
 public record BatchEntityDataList<D>(@NotNull List<EntityData<D>> batch) implements BatchEntityData<D> {
     public BatchEntityDataList {
         assert !batch.isEmpty() : "Entity batch is empty: " + batch;

@@ -1,12 +1,14 @@
 package io.spbx.orm.arch.util;
 
 import com.google.common.base.CaseFormat;
-import io.spbx.util.base.BasicStrings;
+import io.spbx.util.base.annotate.Stateless;
+import io.spbx.util.base.str.BasicStrings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.VisibleForTesting;
 
 import java.lang.reflect.Parameter;
 
+@Stateless
 public class Naming {
     public static @NotNull String fieldSqlName(@NotNull JavaField field) {
          return AnnotationsAnalyzer.getSqlName(field).orElseGet(() -> fieldSqlName(field.getName()));

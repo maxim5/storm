@@ -1,8 +1,10 @@
 package io.spbx.orm.api.tx;
 
-import io.spbx.util.base.Unchecked;
+import io.spbx.util.base.error.Unchecked;
 import io.spbx.util.func.ThrowConsumer;
 import io.spbx.util.func.ThrowFunction;
+import io.spbx.util.func.ThrowIntSupplier;
+import io.spbx.util.func.ThrowLongSupplier;
 import io.spbx.util.func.ThrowRunnable;
 import io.spbx.util.func.ThrowSupplier;
 import org.jetbrains.annotations.NotNull;
@@ -51,6 +53,22 @@ public class InTransaction<P> {
     public <T> T run(@NotNull ThrowSupplier<T, SQLException> action) {
         try {
             return runChecked(action);
+        } catch (SQLException e) {
+            return Unchecked.rethrow("Transaction failed", e);
+        }
+    }
+
+    public int run(@NotNull ThrowIntSupplier<SQLException> action) {
+        try {
+            return runChecked(action::getAsInt);    // FIX[perf]: int -> Integer -> int conversion here
+        } catch (SQLException e) {
+            return Unchecked.rethrow("Transaction failed", e);
+        }
+    }
+
+    public long run(@NotNull ThrowLongSupplier<SQLException> action) {
+        try {
+            return runChecked(action::getAsLong);   // FIX[perf]: long -> Long -> long conversion here
         } catch (SQLException e) {
             return Unchecked.rethrow("Transaction failed", e);
         }

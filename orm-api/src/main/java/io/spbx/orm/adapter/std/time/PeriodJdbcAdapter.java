@@ -3,12 +3,14 @@ package io.spbx.orm.adapter.std.time;
 import io.spbx.orm.adapter.JdbcAdapt;
 import io.spbx.orm.adapter.JdbcSingleValueAdapter;
 import io.spbx.orm.api.ResultSetIterator;
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Period;
 
+@Stateless
 @JdbcAdapt(Period.class)
 public class PeriodJdbcAdapter implements JdbcSingleValueAdapter<Period>, ResultSetIterator.Converter<Period> {
     public static final PeriodJdbcAdapter ADAPTER = new PeriodJdbcAdapter();

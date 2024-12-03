@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.ToIntFunction;
 
-import static io.spbx.util.base.EasyCast.castAny;
+import static io.spbx.util.base.lang.EasyCast.castAny;
 
 /**
  * A {@link Foreign} implementation for integer FK. Note: zero ids are treated as {@code NULL}s.

@@ -5,6 +5,7 @@ import io.spbx.orm.api.QueryRunner;
 import io.spbx.orm.api.query.Column;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * A {@link EntityData} implementation which stores the only-integers row using a {@link IntContainer}.
  * The statement is updated via {@link PreparedStatement#setInt(int, int)} from index 0.
  */
+@Immutable
 public record EntityIntData(@NotNull List<Column> columns, @NotNull IntContainer data) implements EntityData<IntContainer> {
     public EntityIntData {
         assert !columns.isEmpty() : "Entity data is empty: columns=%s, data=%s".formatted(columns, data);

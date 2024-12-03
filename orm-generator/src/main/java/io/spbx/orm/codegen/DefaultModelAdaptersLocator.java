@@ -3,7 +3,6 @@ package io.spbx.orm.codegen;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.Iterables;
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.adapter.JdbcAdapt;
 import io.spbx.util.classpath.ClassNamePredicate;
 import io.spbx.util.classpath.ClasspathScanner;
@@ -11,6 +10,7 @@ import io.spbx.util.classpath.GuavaClasspathScanner;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Set;
 
 @Immutable

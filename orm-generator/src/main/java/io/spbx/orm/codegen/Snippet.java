@@ -1,11 +1,8 @@
 package io.spbx.orm.codegen;
 
-import com.google.errorprone.annotations.CheckReturnValue;
+import io.spbx.util.base.annotate.CheckReturnValue;
 import io.spbx.util.code.gen.LinesBuilder;
-import org.checkerframework.dataflow.qual.Pure;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.stream.Collectors;
 
 @CheckReturnValue
 class Snippet extends LinesBuilder<Snippet> {
@@ -25,7 +22,6 @@ class Snippet extends LinesBuilder<Snippet> {
         return this;
     }
 
-    @Pure
     public @NotNull String joinLines(@NotNull Indent indent) {
         return join(indent.delimiter());
     }

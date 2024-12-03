@@ -1,9 +1,10 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.PageToken;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.concurrent.Immutable;
 
 @Immutable
 public record Pagination(@Nullable ColumnTerm lastItem, @Nullable Order order, int offset, int limit) {

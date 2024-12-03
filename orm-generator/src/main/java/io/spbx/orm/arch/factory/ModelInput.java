@@ -2,16 +2,18 @@ package io.spbx.orm.arch.factory;
 
 import io.spbx.orm.api.annotate.Model;
 import io.spbx.orm.arch.util.Naming;
-import io.spbx.util.base.BasicStrings;
+import io.spbx.util.base.str.BasicStrings;
 import io.spbx.util.reflect.BasicAnnotations;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 
 import static io.spbx.orm.arch.model.SqlNameValidator.validateSqlName;
 import static io.spbx.util.code.jvm.JavaNameValidator.validateJavaIdentifier;
 
+@Immutable
 public record ModelInput(@NotNull Class<?> modelClass,
                          @Nullable Class<?> modelInterface,
                          @NotNull String javaModelName,

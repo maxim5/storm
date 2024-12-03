@@ -1,8 +1,10 @@
 package io.spbx.orm.codegen;
 
+import io.spbx.util.base.annotate.Stateless;
 import io.spbx.util.extern.guava.SourceCodeEscapers;
 import org.jetbrains.annotations.NotNull;
 
+@Stateless
 class JavaSupport {
     public static final String EMPTY_LINE = "/* EMPTY */";
 

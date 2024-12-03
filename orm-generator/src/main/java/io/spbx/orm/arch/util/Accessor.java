@@ -2,8 +2,11 @@ package io.spbx.orm.arch.util;
 
 import org.jetbrains.annotations.NotNull;
 
-import static io.spbx.util.base.BasicExceptions.newInternalError;
+import javax.annotation.concurrent.Immutable;
 
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
+
+@Immutable
 record Accessor(@NotNull String value) {
     public static @NotNull Accessor ofJavaMethod(@NotNull JavaMethod method) {
         assert method.isNonStatic(): newInternalError("Invalid java method:", method);

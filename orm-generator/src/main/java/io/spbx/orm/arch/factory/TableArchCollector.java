@@ -1,21 +1,20 @@
 package io.spbx.orm.arch.factory;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.flogger.FluentLogger;
 import io.spbx.orm.arch.model.TableArch;
+import io.spbx.util.logging.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
-import java.util.logging.Level;
 
 import static io.spbx.orm.arch.InvalidSqlModelException.assure;
-import static io.spbx.util.base.BasicExceptions.runOnlyInDev;
-import static io.spbx.util.collect.BasicMaps.newOrderedMap;
+import static io.spbx.util.base.error.BasicExceptions.runOnlyInDev;
+import static io.spbx.util.collect.map.BasicMaps.newOrderedMap;
 import static java.util.Objects.requireNonNull;
 
 class TableArchCollector {
-    private static final FluentLogger log = FluentLogger.forEnclosingClass();
+    private static final Logger log = Logger.forEnclosingClass();
     private final Map<Class<?>, TableArch> tables = newOrderedMap();
 
     public @NotNull ImmutableMap<Class<?>, TableArch> getAllTables() {
@@ -39,8 +38,8 @@ class TableArchCollector {
     }
 
     private void reportDifferentClassVersionsIfExist(@NotNull Class<?> key) {
-        tables.keySet().stream().filter(klass -> isSameName(klass, key)).forEach(klass -> {
-            log.at(Level.WARNING).log(
+        tables.keySet().stream().filter(klass -> klass != key && isSameName(klass, key)).forEach(klass -> {
+            log.warn().log(
                 "Found a different Class<?> instance with the identical name. " +
                 "Could be a different Class<?> version or different class-loader: " +
                 "exists=[name=%s id=%s classloader=%s] missing=[name=%s id=%s classloader=%s]",

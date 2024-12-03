@@ -2,10 +2,11 @@ package io.spbx.orm.arch.factory;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.arch.model.AdapterArch;
 import io.spbx.orm.arch.model.TableArch;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.concurrent.Immutable;
 
 import static java.util.Objects.requireNonNull;
 

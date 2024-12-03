@@ -1,10 +1,10 @@
 package io.spbx.orm.arch.model;
 
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.ReadFollow;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;

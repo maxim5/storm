@@ -1,8 +1,9 @@
 package io.spbx.orm.api.query;
 
-import io.spbx.util.collect.Streamer;
+import io.spbx.util.collect.stream.Streamer;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ import static io.spbx.orm.api.query.TermType.*;
  * Represents an SQL function. May have one or more inputs and an output. All inputs and output have a type.
  * Some functions are aggregate ({@link #isAggregate()}), hence can participate in {@link SelectGroupBy} queries.
  */
+@Immutable
 public enum Func implements Representable {
     COUNT("count", List.of(WILDCARD), NUMBER),
     SUM("sum", List.of(NUMBER), NUMBER),

@@ -1,7 +1,8 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.concurrent.Immutable;
 
 @Immutable
 public class IsNotNull extends Unit implements BoolTerm {

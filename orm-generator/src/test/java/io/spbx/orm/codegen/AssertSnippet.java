@@ -2,11 +2,11 @@ package io.spbx.orm.codegen;
 
 import com.google.common.truth.StringSubject;
 import com.google.common.truth.Truth;
-import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.testing.AssertCode;
 import io.spbx.orm.testing.AssertCode.JavaSubject;
 import io.spbx.orm.testing.AssertSql;
 import io.spbx.orm.testing.AssertSql.SqlSubject;
+import io.spbx.util.base.annotate.CheckReturnValue;
 import org.jetbrains.annotations.NotNull;
 
 class AssertSnippet {

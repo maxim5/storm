@@ -1,7 +1,8 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.concurrent.Immutable;
 
 /**
  * A wrapper around any term of type {@link TermType#BOOL} type that inherits from {@link BoolTerm}.

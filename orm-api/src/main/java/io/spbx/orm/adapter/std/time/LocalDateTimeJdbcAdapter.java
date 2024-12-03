@@ -3,6 +3,7 @@ package io.spbx.orm.adapter.std.time;
 import io.spbx.orm.adapter.JdbcAdapt;
 import io.spbx.orm.adapter.JdbcSingleValueAdapter;
 import io.spbx.orm.api.ResultSetIterator;
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+@Stateless
 @JdbcAdapt(LocalDateTime.class)
 public class LocalDateTimeJdbcAdapter implements JdbcSingleValueAdapter<LocalDateTime>, ResultSetIterator.Converter<LocalDateTime> {
     public static final LocalDateTimeJdbcAdapter ADAPTER = new LocalDateTimeJdbcAdapter();

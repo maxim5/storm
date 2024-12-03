@@ -3,7 +3,8 @@ package io.spbx.orm.arch.util;
 import com.google.common.collect.ImmutableList;
 import io.spbx.orm.api.annotate.Sql;
 import io.spbx.orm.arch.factory.ModelInput;
-import io.spbx.util.base.BasicStrings;
+import io.spbx.util.base.annotate.Stateless;
+import io.spbx.util.base.str.BasicStrings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,9 +14,10 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static io.spbx.orm.arch.InvalidSqlModelException.failIf;
-import static io.spbx.util.base.BasicExceptions.newInternalError;
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
 import static io.spbx.util.reflect.BasicAnnotations.getOptionalAnnotation;
 
+@Stateless
 public class AnnotationsAnalyzer {
     private static final ImmutableList<Class<? extends Annotation>> NULLABLE_ANNOTATIONS = ImmutableList.of(
         javax.annotation.Nullable.class,

@@ -1,8 +1,6 @@
 package io.spbx.orm.arch.factory;
 
 import com.google.common.truth.Truth;
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.arch.model.Column;
 import io.spbx.orm.arch.model.ForeignTableField;
 import io.spbx.orm.arch.model.JdbcType;
@@ -12,8 +10,10 @@ import io.spbx.orm.arch.model.PojoArch;
 import io.spbx.orm.arch.model.TableArch;
 import io.spbx.orm.arch.model.TableField;
 import io.spbx.orm.testing.FakeModelAdaptersLocator;
-import io.spbx.util.base.Pair;
-import io.spbx.util.collect.BasicIterables;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
+import io.spbx.util.base.annotate.CheckReturnValue;
+import io.spbx.util.base.tuple.Pair;
+import io.spbx.util.collect.iter.BasicIterables;
 import io.spbx.util.testing.TestingBasics.SimpleBitSet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

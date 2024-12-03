@@ -7,11 +7,11 @@ import io.spbx.orm.arch.model.Column;
 import io.spbx.orm.arch.model.JdbcType;
 import io.spbx.orm.arch.model.PojoArch;
 import io.spbx.orm.testing.FakeModelAdaptersLocator;
-import io.spbx.util.base.Maybe;
+import io.spbx.util.base.lang.Maybe;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;

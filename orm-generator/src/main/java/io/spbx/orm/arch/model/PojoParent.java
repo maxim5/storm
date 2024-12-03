@@ -1,11 +1,11 @@
 package io.spbx.orm.arch.model;
 
-import com.google.errorprone.annotations.Immutable;
-import io.spbx.util.base.OneOf;
+import io.spbx.util.base.tuple.OneOf;
 import io.spbx.util.lazy.AtomicLazyInit;
 import io.spbx.util.lazy.LazyInit;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;

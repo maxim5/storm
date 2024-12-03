@@ -3,11 +3,13 @@ package io.spbx.orm.arch.util;
 import io.spbx.util.reflect.BasicMembers;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 
+@Immutable
 public record JavaMethod(@NotNull Method rawMethod, @NotNull Class<?> ownerClass) implements Member, AnnotatedElement {
     public @NotNull String getName() {
         return rawMethod.getName();

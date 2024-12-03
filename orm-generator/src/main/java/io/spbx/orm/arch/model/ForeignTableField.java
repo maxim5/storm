@@ -1,15 +1,15 @@
 package io.spbx.orm.arch.model;
 
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.ReadFollow;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 
 import static io.spbx.orm.api.ReadFollow.FOLLOW_ALL;
 import static io.spbx.orm.api.ReadFollow.NO_FOLLOW;
-import static io.spbx.util.base.BasicExceptions.newInternalError;
-import static io.spbx.util.collect.BasicIterables.concatToList;
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
+import static io.spbx.util.collect.iter.BasicIterables.concatToList;
 
 @Immutable
 public class ForeignTableField extends TableField {

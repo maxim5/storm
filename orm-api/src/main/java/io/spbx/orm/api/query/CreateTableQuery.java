@@ -1,15 +1,15 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.BaseTable;
 import io.spbx.orm.api.Engine;
 import io.spbx.orm.api.TableMeta;
 import io.spbx.orm.api.TableMeta.ColumnMeta;
-import io.spbx.util.base.BasicExceptions.IllegalArgumentExceptions;
-import io.spbx.util.collect.MapBuilder;
-import io.spbx.util.text.BasicJoin;
+import io.spbx.util.base.error.BasicExceptions.IllegalArgumentExceptions;
+import io.spbx.util.base.str.BasicJoin;
+import io.spbx.util.collect.map.MapBuilder;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;

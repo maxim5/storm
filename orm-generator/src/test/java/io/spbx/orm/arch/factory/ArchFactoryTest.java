@@ -1,7 +1,6 @@
 package io.spbx.orm.arch.factory;
 
 import com.google.common.truth.Truth;
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.spbx.orm.adapter.std.lang.AtomicIntegerJdbcAdapter;
 import io.spbx.orm.api.ForeignInt;
 import io.spbx.orm.api.ForeignLong;
@@ -13,13 +12,14 @@ import io.spbx.orm.arch.factory.MoreTestingArchClasses.AlsoProtectedFieldPublicG
 import io.spbx.orm.arch.model.JdbcType;
 import io.spbx.orm.arch.testing.TestingArchClasses.ProtectedFieldPublicGetterDerived;
 import io.spbx.orm.testing.FakeModelAdaptersLocator;
-import io.spbx.util.base.Maybe;
-import io.spbx.util.base.Pair;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
+import io.spbx.util.base.lang.Maybe;
+import io.spbx.util.base.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.awt.Point;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;

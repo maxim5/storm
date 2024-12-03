@@ -1,9 +1,9 @@
 package io.spbx.orm.arch.factory;
 
 import com.google.common.collect.ImmutableList;
-import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 import java.util.Optional;
 

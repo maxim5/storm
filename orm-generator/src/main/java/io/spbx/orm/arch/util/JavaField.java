@@ -4,12 +4,14 @@ import io.spbx.util.reflect.BasicGenerics;
 import io.spbx.util.reflect.BasicMembers;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
 import java.lang.reflect.Member;
 import java.lang.reflect.Type;
 
+@Immutable
 public record JavaField(@NotNull Field rawField, @NotNull Class<?> ownerClass) implements Member, AnnotatedElement {
     public @NotNull String getName() {
         return rawField.getName();

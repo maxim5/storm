@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
  * {@link io.spbx.orm.api.annotate.Sql} or {@link io.spbx.orm.api.annotate.Sql.Via} annotation.
  * <p>
  * In addition to the methods below, the adapter is expected to implement a creation method with a signature:
- * {@snippet lang="java" :
+ * {@snippet lang = "java":
  *     public E createInstance(T1 value1, T2 value2, ..., Tn value_n);
  * }
  * Where {@code T1}, {@code T2}, etc. are all JDBC values necessary for the entity. The number of values

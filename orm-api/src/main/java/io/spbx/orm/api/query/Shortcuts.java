@@ -1,11 +1,13 @@
 package io.spbx.orm.api.query;
 
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+@Stateless
 public class Shortcuts {
     public static final Term NULL = new HardcodedTerm("NULL", TermType.WILDCARD);
     public static final Term STAR = new HardcodedTerm("*", TermType.WILDCARD);

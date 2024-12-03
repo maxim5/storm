@@ -1,5 +1,8 @@
 package io.spbx.orm.api.query;
 
+import javax.annotation.concurrent.Immutable;
+
+@Immutable
 public enum JoinType {
     INNER_JOIN,
     LEFT_JOIN,

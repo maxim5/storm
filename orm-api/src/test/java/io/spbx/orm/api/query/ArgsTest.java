@@ -2,11 +2,11 @@ package io.spbx.orm.api.query;
 
 import com.carrotsearch.hppc.IntArrayList;
 import com.carrotsearch.hppc.LongArrayList;
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.mockrunner.mock.jdbc.MockPreparedStatement;
-import io.spbx.util.collect.ImmutableArrayList;
-import io.spbx.util.collect.Streamer;
-import io.spbx.util.testing.TestingBasics;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
+import io.spbx.util.base.ops.ObjArrayOps;
+import io.spbx.util.collect.list.ImmutableArrayList;
+import io.spbx.util.collect.stream.Streamer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.Tag;
@@ -18,7 +18,7 @@ import java.util.Map;
 import static com.google.common.truth.Truth.assertThat;
 import static io.spbx.orm.testing.MockingJdbc.assertThat;
 import static io.spbx.orm.testing.MockingJdbc.mockPreparedStatement;
-import static io.spbx.util.base.Unchecked.IntSuppliers.runRethrow;
+import static io.spbx.util.base.error.Unchecked.IntSuppliers.runRethrow;
 import static io.spbx.util.testing.AssertBasics.assertPrivateFieldClass;
 import static io.spbx.util.testing.AssertBasics.getPrivateFieldValue;
 import static io.spbx.util.testing.TestingBasics.*;
@@ -392,7 +392,7 @@ public class ArgsTest {
         public @NotNull ArgsSubject assertPreparedParams(@Nullable Object @NotNull ... expected) {
             MockPreparedStatement statement = mockPreparedStatement();
             int added = runRethrow(() -> args.setPreparedParams(statement));
-            assertThat(expected.length).isEqualTo(added);
+            assertThat(added).isEqualTo(expected.length);
             assertThat(statement).withParams().equalExactly(expected);
             return this;
         }
@@ -403,8 +403,8 @@ public class ArgsTest {
                 statement.setObject(1, null);
                 return args.setPreparedParams(statement, 1);
             });
-            expected = TestingBasics.prependVarArg(null, expected);
-            assertThat(expected.length).isEqualTo(added);
+            expected = ObjArrayOps.prepend(null, expected);
+            assertThat(added).isEqualTo(expected.length);
             assertThat(statement).withParams().equalExactly(expected);
             return this;
         }

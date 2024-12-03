@@ -1,6 +1,5 @@
 package io.spbx.orm.arch.factory;
 
-import com.google.common.flogger.FluentLogger;
 import io.spbx.orm.arch.model.AdapterArch;
 import io.spbx.orm.arch.model.JavaNameHolder;
 import io.spbx.orm.arch.model.TableArch;
@@ -8,6 +7,7 @@ import io.spbx.orm.codegen.DefaultModelAdaptersLocator;
 import io.spbx.orm.codegen.ModelAdapterCodegen;
 import io.spbx.orm.codegen.ModelAdaptersLocator;
 import io.spbx.orm.codegen.ModelTableCodegen;
+import io.spbx.util.logging.Logger;
 import io.spbx.util.time.TimeIt;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,10 +16,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.logging.Level;
 
 public class ArchJavaRunner {
-    private static final FluentLogger log = FluentLogger.forEnclosingClass();
+    private static final Logger log = Logger.forEnclosingClass();
 
     private final ModelAdaptersLocator locator;
     private String destination;
@@ -34,8 +33,8 @@ public class ArchJavaRunner {
     }
 
     public void runGenerate(@NotNull String destinationPath, @NotNull RunInputs inputs) throws IOException {
-        log.at(Level.INFO).log("Running orm generator for %d models and %d pojo classes",
-                               inputs.models().size(), inputs.pojos().size());
+        log.info().log("Running orm generator for %d models and %d pojo classes",
+                       inputs.models().size(), inputs.pojos().size());
         destination = destinationPath;
         TimeIt.timeIt(() -> {
             RunResult runResult = new ArchFactory(locator).build(inputs);
@@ -51,7 +50,7 @@ public class ArchJavaRunner {
         }).onDone((runResult, millis) -> {
             int adapters = runResult.adapters().size();
             int tables = runResult.tables().size();
-            log.at(Level.INFO).log("Generated %d adapters and %d tables in %d millis", adapters, tables, millis);
+            log.info().log("Generated %d adapters and %d tables in %d millis", adapters, tables, millis);
         });
     }
 

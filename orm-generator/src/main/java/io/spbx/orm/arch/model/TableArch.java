@@ -1,9 +1,8 @@
 package io.spbx.orm.arch.model;
 
 import com.google.common.collect.ImmutableList;
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.ReadFollow;
-import io.spbx.util.base.Pair;
+import io.spbx.util.base.tuple.Pair;
 import io.spbx.util.lazy.AtomicCacheCompute;
 import io.spbx.util.lazy.AtomicLazyInit;
 import io.spbx.util.lazy.CacheCompute;
@@ -11,6 +10,7 @@ import io.spbx.util.lazy.LazyInit;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,7 +22,7 @@ import static io.spbx.orm.api.ReadFollow.FOLLOW_ALL;
 import static io.spbx.orm.api.ReadFollow.FOLLOW_ONE_LEVEL;
 import static io.spbx.orm.arch.InvalidSqlModelException.newInvalidSqlModelException;
 import static io.spbx.orm.arch.model.SqlNameValidator.validateSqlName;
-import static io.spbx.util.base.BasicExceptions.newInternalError;
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
 import static io.spbx.util.code.jvm.JavaNameValidator.validateJavaIdentifier;
 import static io.spbx.util.code.jvm.JavaNameValidator.validateJavaPackage;
 

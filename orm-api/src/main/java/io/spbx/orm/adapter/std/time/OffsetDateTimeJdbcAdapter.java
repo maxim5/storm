@@ -3,6 +3,7 @@ package io.spbx.orm.adapter.std.time;
 import io.spbx.orm.adapter.JdbcAdapt;
 import io.spbx.orm.adapter.JdbcMultiValueAdapter;
 import io.spbx.orm.api.ResultSetIterator;
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
+@Stateless
 @JdbcAdapt(value = OffsetDateTime.class, names = {"timestamp", "zone_offset_seconds"})
 public class OffsetDateTimeJdbcAdapter implements JdbcMultiValueAdapter<OffsetDateTime>, ResultSetIterator.Converter<OffsetDateTime> {
     public static final OffsetDateTimeJdbcAdapter ADAPTER = new OffsetDateTimeJdbcAdapter();

@@ -3,8 +3,8 @@ package io.spbx.orm.api;
 import com.carrotsearch.hppc.IntContainer;
 import com.carrotsearch.hppc.LongContainer;
 import io.spbx.orm.api.query.Args;
-import io.spbx.util.prima.extern.hppc.HppcInt;
-import io.spbx.util.prima.extern.hppc.HppcLong;
+import io.spbx.util.extern.hppc.HppcInt;
+import io.spbx.util.extern.hppc.HppcLong;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import static io.spbx.util.collect.BasicIterables.asList;
+import static io.spbx.util.collect.iter.BasicIterables.asList;
 
 /**
  * An exception for errors during SQL query preparation, execution or result processing.

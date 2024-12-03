@@ -3,8 +3,8 @@ package io.spbx.orm.api;
 import com.carrotsearch.hppc.IntArrayList;
 import com.carrotsearch.hppc.IntContainer;
 import com.carrotsearch.hppc.IntObjectMap;
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.spbx.orm.api.query.Filter;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

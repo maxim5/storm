@@ -1,8 +1,8 @@
 package io.spbx.orm.api;
 
-import com.google.errorprone.annotations.MustBeClosed;
-import io.spbx.util.base.Pair;
-import io.spbx.util.base.Unchecked;
+import io.spbx.util.base.annotate.MustBeClosed;
+import io.spbx.util.base.error.Unchecked;
+import io.spbx.util.base.tuple.Pair;
 import io.spbx.util.func.ThrowFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static io.spbx.util.base.EasyCast.castAny;
+import static io.spbx.util.base.lang.EasyCast.castAny;
 
 /**
  * An adapter that allows to iterate over the JDBC {@link ResultSet} via {@link Iterator}.

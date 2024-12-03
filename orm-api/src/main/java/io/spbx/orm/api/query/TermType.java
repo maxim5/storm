@@ -2,10 +2,13 @@ package io.spbx.orm.api.query;
 
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
+
 /**
  * Represents a type of term or expression. An expression can have one or more inputs and an output,
  * and to be valid their types must match. There exists a universal {@link #WILDCARD} type which matches all types.
  */
+@Immutable
 public enum TermType {
     NUMBER,
     STRING,

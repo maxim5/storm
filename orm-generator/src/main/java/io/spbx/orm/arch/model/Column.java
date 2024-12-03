@@ -2,8 +2,11 @@ package io.spbx.orm.arch.model;
 
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
+
 import static io.spbx.orm.arch.model.SqlNameValidator.validateSqlName;
 
+@Immutable
 public record Column(@NotNull String sqlName, @NotNull ColumnType type) {
     public Column {
         validateSqlName(sqlName);

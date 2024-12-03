@@ -1,18 +1,19 @@
 package io.spbx.orm.arch.model;
 
-import com.google.errorprone.annotations.Immutable;
-import io.spbx.util.collect.ImmutableArray;
+import io.spbx.util.collect.array.ImmutableArray;
+import io.spbx.util.collect.container.IntSize;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.VisibleForTesting;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Arrays;
 import java.util.Objects;
 
 import static io.spbx.orm.arch.InvalidSqlModelException.assure;
 
 @Immutable
-public class Defaults {
+public class Defaults implements IntSize {
     @VisibleForTesting
     static final Defaults EMPTY_COLUMN_DEFAULTS = new Defaults(new String[1]);
 
@@ -35,6 +36,7 @@ public class Defaults {
         return size == 1 ? ofOneColumn(values) : isEmpty(values) ? new Defaults(new String[size]) : new Defaults(values);
     }
 
+    @Override
     public int size() {
         return values.size();
     }

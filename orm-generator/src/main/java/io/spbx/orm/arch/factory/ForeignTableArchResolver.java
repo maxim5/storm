@@ -9,7 +9,7 @@ import io.spbx.orm.arch.model.TableArch;
 import io.spbx.orm.arch.util.AnnotationsAnalyzer;
 import io.spbx.orm.arch.util.JavaClassAnalyzer;
 import io.spbx.orm.arch.util.JavaField;
-import io.spbx.util.base.Pair;
+import io.spbx.util.base.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -69,7 +69,7 @@ class ForeignTableArchResolver {
             assure(foreignPrimaryKeyField.isPresent(),
                    "Foreign model `%s` does not have a primary key. Expected key type: `%s`",
                    entityType.getSimpleName(), keyType);
-            primaryKeyType = foreignPrimaryKeyField.get().getType();
+            primaryKeyType = foreignPrimaryKeyField.orElseThrow().getType();
         }
 
         assure(primaryKeyType == keyType,

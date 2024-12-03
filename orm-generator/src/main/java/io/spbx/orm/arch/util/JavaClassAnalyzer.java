@@ -1,12 +1,13 @@
 package io.spbx.orm.arch.util;
 
-import com.google.common.flogger.FluentLogger;
 import io.spbx.orm.arch.model.ModelField;
-import io.spbx.util.collect.BasicCollectors;
-import io.spbx.util.collect.Streamer;
+import io.spbx.util.base.annotate.Stateless;
+import io.spbx.util.collect.stream.BasicCollectors;
+import io.spbx.util.collect.stream.Streamer;
 import io.spbx.util.extern.asm.AsmClassScanner;
 import io.spbx.util.extern.asm.AsmClassScanner.Access;
 import io.spbx.util.extern.asm.AsmClassScanner.MethodData;
+import io.spbx.util.logging.Logger;
 import io.spbx.util.reflect.BasicClasses;
 import io.spbx.util.reflect.BasicMembers;
 import io.spbx.util.reflect.BasicMembers.Methods;
@@ -24,18 +25,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static io.spbx.orm.arch.InvalidSqlModelException.failIf;
 import static io.spbx.orm.arch.InvalidSqlModelException.newInvalidSqlModelException;
-import static io.spbx.util.base.BasicExceptions.newInternalError;
-import static io.spbx.util.base.BasicNulls.firstNonNullIfExist;
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
+import static io.spbx.util.base.lang.BasicNulls.firstNonNullIfExists;
 import static io.spbx.util.reflect.BasicMembers.isPrivate;
 
+@Stateless
 public class JavaClassAnalyzer {
-    private static final FluentLogger log = FluentLogger.forEnclosingClass();
+    private static final Logger log = Logger.forEnclosingClass();
 
     public static @NotNull List<JavaField> getAllFieldsOrdered(@NotNull Class<?> klass) {
         return getAllFieldsOrderedRecursive(klass).stream().map(field -> new JavaField(field, klass)).toList();
@@ -68,7 +69,7 @@ public class JavaClassAnalyzer {
         }
         allFields.addAll(ownFields(klass));
 
-        log.at(Level.FINER).log("Field matching for the model class: %s", klass.getSimpleName());
+        log.debug().log("Field matching for the model class: %s", klass.getSimpleName());
         if (matchFieldsToConstructors(allFields, klass)) {
             return allFields;
         }
@@ -89,7 +90,7 @@ public class JavaClassAnalyzer {
     static boolean matchFieldsToConstructors(@NotNull List<Field> fields, @NotNull Class<?> klass) {
         List<Class<?>> fieldTypes = fields.stream().map(Field::getType).collect(Collectors.toList());
         List<String> fieldNames = fields.stream().map(Field::getName).toList();
-        log.at(Level.FINER).log("Fields: %s", fields);
+        log.debug().log("Fields: %s", fields);
 
         for (Constructor<?> constructor : klass.getDeclaredConstructors()) {
             if (isPrivate(constructor)) {
@@ -105,10 +106,10 @@ public class JavaClassAnalyzer {
                     if (fieldNames.equals(paramNames)) {
                         return true;
                     }
-                    log.at(Level.FINE).log("Constructor param names don't match the fields: fields=%s params=%s",
-                                           fieldNames, paramNames);
+                    log.debug().log("Constructor param names don't match the fields: fields=%s params=%s",
+                                    fieldNames, paramNames);
                 } else {
-                    log.at(Level.WARNING).log(
+                    log.warn().log(
                         "Parameter names aren't available in the compiled `%s` class. " +
                         "Field matching can be incorrect. Generated code needs manual review.",
                         klass.getSimpleName()
@@ -161,7 +162,7 @@ public class JavaClassAnalyzer {
             .maps(JavaMethod::getName, Function.identity())
             .toMapIgnoreDuplicateKeys();  // Likely duplicate method names: `hashCode()` and `toString()`
 
-        return firstNonNullIfExist(
+        return firstNonNullIfExists(
             List.of(
                 () -> eligibleMethods.get(fieldName),
                 () -> eligibleMethods.get(getterName(fieldType, fieldName)),
@@ -218,7 +219,7 @@ public class JavaClassAnalyzer {
                 className = scanner.superClass();
             }
         } catch (Throwable e) {
-            log.at(Level.WARNING).withCause(e).log("ASM class reader for `%s` failed: %s", className, e.getMessage());
+            log.warn().withCause(e).log("ASM class reader for `%s` failed: %s", className, e.getMessage());
         }
 
         return null;

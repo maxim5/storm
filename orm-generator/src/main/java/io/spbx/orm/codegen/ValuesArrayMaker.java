@@ -2,7 +2,7 @@ package io.spbx.orm.codegen;
 
 import com.google.common.primitives.Primitives;
 import io.spbx.orm.arch.model.TableField;
-import io.spbx.util.prima.func.ObjIntFunction;
+import io.spbx.util.func.BiIntObjFunction;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -27,11 +27,11 @@ class ValuesArrayMaker {
     }
 
     private static <T> @NotNull List<T> zipWithColumnIndex(@NotNull Iterable<TableField> fields,
-                                                           @NotNull ObjIntFunction<TableField, T> converter) {
+                                                           @NotNull BiIntObjFunction<TableField, T> converter) {
         ArrayList<T> result = new ArrayList<>();
         int columnIndex = 0;
         for (TableField field : fields) {
-            result.add(converter.apply(field, columnIndex));
+            result.add(converter.apply(columnIndex, field));
             columnIndex += field.columnsNumber();
         }
         return result;
@@ -41,7 +41,7 @@ class ValuesArrayMaker {
         private final TableField field;
         private final int columnIndex;
 
-        private FieldConverter(@NotNull TableField field, int columnIndex) {
+        private FieldConverter(int columnIndex, @NotNull TableField field) {
             this.field = field;
             this.columnIndex = columnIndex;
         }

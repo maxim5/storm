@@ -1,8 +1,9 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.concurrent.Immutable;
 
 /**
  * A class for the variable occurrence in the SQL query. Is a {@link Term}.

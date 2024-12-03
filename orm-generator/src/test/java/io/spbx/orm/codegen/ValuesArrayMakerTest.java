@@ -1,17 +1,17 @@
 package io.spbx.orm.codegen;
 
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.api.Engine;
 import io.spbx.orm.api.ForeignInt;
 import io.spbx.orm.api.ForeignLong;
 import io.spbx.orm.api.ForeignObj;
 import io.spbx.orm.api.annotate.Sql;
 import io.spbx.orm.arch.model.TableArch;
-import io.spbx.util.base.Maybe;
-import io.spbx.util.prima.wrap.MutableBool;
-import io.spbx.util.prima.wrap.MutableInt;
-import io.spbx.util.prima.wrap.MutableLong;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
+import io.spbx.util.base.annotate.CheckReturnValue;
+import io.spbx.util.base.lang.Maybe;
+import io.spbx.util.base.wrap.MutableBool;
+import io.spbx.util.base.wrap.MutableInt;
+import io.spbx.util.base.wrap.MutableLong;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.Tag;

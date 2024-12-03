@@ -4,6 +4,7 @@ import io.spbx.orm.api.QueryRunner;
 import io.spbx.orm.api.query.Column;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.util.Set;
  * <p>
  * The statement is updated via {@link PreparedStatement#setObject(int, Object)} from index 0.
  */
+@Immutable
 public record EntityColumnMap<C extends Column>(@NotNull Map<C, ?> map) implements EntityData<Map<C, ?>> {
     public EntityColumnMap {
         assert !map.isEmpty() : "Entity data is empty: " + map;

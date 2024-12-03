@@ -3,12 +3,14 @@ package io.spbx.orm.adapter.std.lang;
 import io.spbx.orm.adapter.JdbcAdapt;
 import io.spbx.orm.adapter.JdbcSingleValueAdapter;
 import io.spbx.orm.api.ResultSetIterator;
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Stateless
 @JdbcAdapt(AtomicLong.class)
 public class AtomicLongJdbcAdapter implements JdbcSingleValueAdapter<AtomicLong>, ResultSetIterator.Converter<AtomicLong> {
     public static final AtomicLongJdbcAdapter ADAPTER = new AtomicLongJdbcAdapter();

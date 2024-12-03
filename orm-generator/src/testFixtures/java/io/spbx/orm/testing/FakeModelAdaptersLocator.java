@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-import static io.spbx.util.collect.BasicMaps.newOrderedMap;
+import static io.spbx.util.collect.map.BasicMaps.newOrderedMap;
 
 public class FakeModelAdaptersLocator implements ModelAdaptersLocator {
     public static final ImmutableMap<Class<?>, Class<?>> DEFAULT_MAP = ImmutableMap.of(

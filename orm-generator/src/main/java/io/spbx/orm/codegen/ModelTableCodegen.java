@@ -16,8 +16,8 @@ import io.spbx.orm.arch.model.PrefixedColumn;
 import io.spbx.orm.arch.model.TableArch;
 import io.spbx.orm.arch.model.TableField;
 import io.spbx.orm.arch.util.Naming;
-import io.spbx.util.base.BasicExceptions.IllegalArgumentExceptions;
-import io.spbx.util.collect.BasicMaps;
+import io.spbx.util.base.error.BasicExceptions.IllegalArgumentExceptions;
+import io.spbx.util.collect.map.BasicMaps;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -30,8 +30,8 @@ import static io.spbx.orm.codegen.Indent.*;
 import static io.spbx.orm.codegen.JavaSupport.EMPTY_LINE;
 import static io.spbx.orm.codegen.JavaSupport.wrapAsStringLiteral;
 import static io.spbx.orm.codegen.Joining.*;
-import static io.spbx.util.collect.BasicMaps.mergeToMap;
-import static io.spbx.util.collect.BasicMaps.orderedMapOf;
+import static io.spbx.util.collect.map.BasicMaps.mergeToMap;
+import static io.spbx.util.collect.map.BasicMaps.orderedMapOf;
 import static java.util.Objects.requireNonNull;
 
 @SuppressWarnings("UnnecessaryStringEscape")
@@ -266,6 +266,28 @@ public class ModelTableCodegen extends BaseCodegen {
             try (PreparedStatement statement = runner().prepareQuery(query, filter.args());
                  ResultSet result = statement.executeQuery()) {
                 return result.next() ? result.getInt(1) : 0;
+            } catch (SQLException e) {
+                throw new QueryException("Failed to count in $TableClass", query, e);
+            }
+        }
+        
+        @Override
+        public long count64() {
+            String query = "SELECT COUNT(*) FROM $table_sql";
+            try (PreparedStatement statement = runner().prepareQuery(query);
+                 ResultSet result = statement.executeQuery()) {
+                return result.next() ? result.getLong(1) : 0;
+            } catch (SQLException e) {
+                throw new QueryException("Failed to count in $TableClass", query, e);
+            }
+        }
+        
+        @Override
+        public long count64(@Nonnull Filter filter) {
+            String query = "SELECT COUNT(*) FROM $table_sql\\n" + filter.repr();
+            try (PreparedStatement statement = runner().prepareQuery(query, filter.args());
+                 ResultSet result = statement.executeQuery()) {
+                return result.next() ? result.getLong(1) : 0;
             } catch (SQLException e) {
                 throw new QueryException("Failed to count in $TableClass", query, e);
             }

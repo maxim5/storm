@@ -9,7 +9,7 @@ import java.net.InetAddress;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static io.spbx.util.base.EasyCast.castAny;
+import static io.spbx.util.base.lang.EasyCast.castAny;
 
 public abstract class BaseInetAddressJdbcAdapter<T extends InetAddress>
         implements JdbcSingleValueAdapter<T>, ResultSetIterator.Converter<T> {

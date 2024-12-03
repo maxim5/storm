@@ -1,10 +1,12 @@
 package io.spbx.orm.arch.model;
 
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.VisibleForTesting;
 
 import java.util.regex.Pattern;
 
+@Stateless
 public class SqlNameValidator {
     public static @NotNull String validateSqlName(@NotNull String name) {
         assert isValidSqlName(name) : "Invalid sql name: " + name;

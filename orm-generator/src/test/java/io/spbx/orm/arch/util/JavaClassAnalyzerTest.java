@@ -1,7 +1,5 @@
 package io.spbx.orm.arch.util;
 
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import com.google.errorprone.annotations.CheckReturnValue;
 import io.spbx.orm.arch.InvalidSqlModelException;
 import io.spbx.orm.arch.factory.MoreTestingArchClasses.AlsoPrivateFieldLocalGetterDerived;
 import io.spbx.orm.arch.factory.MoreTestingArchClasses.AlsoPrivateFieldPrivateGetterDerived;
@@ -32,6 +30,8 @@ import io.spbx.orm.arch.testing.TestingArchClasses.ProtectedFieldPublicGetterDer
 import io.spbx.orm.arch.testing.TestingArchClasses.ProtectedFieldPublicGetterHolder;
 import io.spbx.orm.arch.testing.TestingArchClasses.PublicFieldDerived;
 import io.spbx.orm.arch.testing.TestingArchClasses.PublicFieldHolder;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
+import io.spbx.util.base.annotate.CheckReturnValue;
 import io.spbx.util.reflect.BasicMembers.Fields;
 import io.spbx.util.reflect.BasicMembers.Scope;
 import org.jetbrains.annotations.NotNull;
@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.awt.Point;
+import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package io.spbx.orm.codegen;
 
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -12,6 +13,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+@Stateless
 class Joining {
     public static final Collector<CharSequence, ?, String> COMMA_JOINER = Collectors.joining(", ");
     public static final Collector<CharSequence, ?, String> LINE_JOINER = Collectors.joining("\n");

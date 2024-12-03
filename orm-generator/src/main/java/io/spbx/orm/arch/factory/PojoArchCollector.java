@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static io.spbx.util.collect.BasicMaps.newOrderedMap;
+import static io.spbx.util.collect.map.BasicMaps.newOrderedMap;
 
 class PojoArchCollector {
     private final Map<Class<?>, PojoArch> pojos = newOrderedMap();

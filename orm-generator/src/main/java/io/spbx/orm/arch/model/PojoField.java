@@ -1,12 +1,12 @@
 package io.spbx.orm.arch.model;
 
 import com.google.common.collect.Streams;
-import com.google.errorprone.annotations.Immutable;
-import io.spbx.util.base.Pair;
+import io.spbx.util.base.tuple.Pair;
 import io.spbx.util.lazy.AtomicCacheCompute;
 import io.spbx.util.lazy.CacheCompute;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static io.spbx.util.base.BasicExceptions.newInternalError;
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
 
 @Immutable
 public abstract class PojoField {

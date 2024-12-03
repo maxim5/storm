@@ -1,9 +1,11 @@
 package io.spbx.orm.adapter.std.chars;
 
 import io.spbx.orm.adapter.JdbcAdapt;
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Stateless
 @JdbcAdapt({char.class, Character.class})
 public class CharacterJdbcAdapter {
     public static char createInstance(@NotNull String value) {

@@ -1,9 +1,9 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.entity.EntityData;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;

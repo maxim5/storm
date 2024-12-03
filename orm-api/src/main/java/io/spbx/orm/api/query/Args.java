@@ -5,18 +5,19 @@ import com.carrotsearch.hppc.IntContainer;
 import com.carrotsearch.hppc.LongArrayList;
 import com.carrotsearch.hppc.LongContainer;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.flogger.FluentLogger;
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.QueryRunner;
-import io.spbx.util.base.BasicNulls;
-import io.spbx.util.collect.ImmutableArrayList;
-import io.spbx.util.collect.ListBuilder;
-import io.spbx.util.collect.Streamer;
-import io.spbx.util.prima.extern.hppc.HppcInt;
-import io.spbx.util.prima.extern.hppc.HppcLong;
+import io.spbx.util.base.lang.BasicNulls;
+import io.spbx.util.collect.container.IntSize;
+import io.spbx.util.collect.list.ImmutableArrayList;
+import io.spbx.util.collect.list.ListBuilder;
+import io.spbx.util.collect.stream.Streamer;
+import io.spbx.util.extern.hppc.HppcInt;
+import io.spbx.util.extern.hppc.HppcLong;
+import io.spbx.util.logging.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -24,11 +25,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static io.spbx.util.base.BasicExceptions.newInternalError;
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
 
 /**
  * Holds the ordered list of arguments to be applied to JDBC queries. The list corresponds to all {@code "?"}
@@ -52,8 +52,8 @@ import static io.spbx.util.base.BasicExceptions.newInternalError;
  * @see UnresolvedArg
  */
 @Immutable
-public final class Args {
-    private static final FluentLogger log = FluentLogger.forEnclosingClass();
+public final class Args implements IntSize {
+    private static final Logger log = Logger.forEnclosingClass();
     private static final Args EMPTY_ARGS = new Args(InternalType.GENERIC_LIST, ImmutableArrayList.of());
 
     private final InternalType type;     // used to optimize the storage (internal and external lists)
@@ -154,19 +154,21 @@ public final class Args {
         return new Args(InternalType.GENERIC_LIST, ImmutableArrayList.copyOf(args), ImmutableArrayList.copyOf(args));
     }
 
-    public boolean isEmpty() {
-        return switch (type) {
-            case GENERIC_LIST -> ((List<?>) external).isEmpty();
-            case INTS -> ((IntContainer) external).isEmpty();
-            case LONGS -> ((LongContainer) external).isEmpty();
-        };
-    }
-
+    @Override
     public int size() {
         return switch (type) {
             case GENERIC_LIST -> ((List<?>) external).size();
             case INTS -> ((IntContainer) external).size();
             case LONGS -> ((LongContainer) external).size();
+        };
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return switch (type) {
+            case GENERIC_LIST -> ((List<?>) external).isEmpty();
+            case INTS -> ((IntContainer) external).isEmpty();
+            case LONGS -> ((LongContainer) external).isEmpty();
         };
     }
 
@@ -316,16 +318,16 @@ public final class Args {
 
     @SuppressWarnings("SameReturnValue")
     private static boolean warnAboutPotentialBugs(@NotNull Iterable<?> args) {
-        if (!log.at(Level.WARNING).isEnabled()) {
+        if (!log.warn().isEnabled()) {
             return true;
         }
         for (Object arg : args) {
             if (arg instanceof Variable) {
-                log.at(Level.WARNING).log("Variable `%s` passed in as an arg. Did you forget to call `.args()`?", arg);
+                log.warn().log("Variable `%s` passed in as an arg. Did you forget to call `.args()`?", arg);
             } else if (arg instanceof HasArgs) {
-                log.at(Level.WARNING).log("HasArgs instance `%s` passed in as an arg. Did you forget to call `.args()`?", arg);
+                log.warn().log("HasArgs instance `%s` passed in as an arg. Did you forget to call `.args()`?", arg);
             } else if (arg instanceof Args) {
-                log.at(Level.WARNING).log("Args instance `%s` passed in as an arg. Did you extra call `Args.of()`?", arg);
+                log.warn().log("Args instance `%s` passed in as an arg. Did you extra call `Args.of()`?", arg);
             }
         }
         return true;

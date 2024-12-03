@@ -15,7 +15,7 @@ import io.spbx.orm.arch.model.PojoFieldMapper;
 import io.spbx.orm.arch.model.PojoFieldNative;
 import io.spbx.orm.arch.model.PojoFieldNested;
 import io.spbx.orm.arch.util.Naming;
-import io.spbx.util.base.BasicExceptions.InternalErrors;
+import io.spbx.util.base.error.BasicExceptions.InternalErrors;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -28,9 +28,9 @@ import java.util.stream.Stream;
 
 import static io.spbx.orm.codegen.Indent.INDENT1;
 import static io.spbx.orm.codegen.Joining.*;
-import static io.spbx.util.base.BasicExceptions.newInternalError;
-import static io.spbx.util.collect.BasicMaps.mergeToMap;
-import static io.spbx.util.collect.BasicMaps.newOrderedMap;
+import static io.spbx.util.base.error.BasicExceptions.newInternalError;
+import static io.spbx.util.collect.map.BasicMaps.mergeToMap;
+import static io.spbx.util.collect.map.BasicMaps.newOrderedMap;
 
 @SuppressWarnings("UnnecessaryStringEscape")
 public class ModelAdapterCodegen extends BaseCodegen {

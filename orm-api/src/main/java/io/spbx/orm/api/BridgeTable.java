@@ -1,7 +1,7 @@
 package io.spbx.orm.api;
 
 import com.google.common.collect.Lists;
-import com.google.errorprone.annotations.MustBeClosed;
+import io.spbx.util.base.annotate.MustBeClosed;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

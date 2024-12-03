@@ -6,6 +6,7 @@ import io.spbx.orm.arch.model.MapperApi;
 import io.spbx.orm.arch.model.MapperApi.MapperCallFormatter;
 import io.spbx.orm.arch.util.JavaField;
 import io.spbx.orm.arch.util.Naming;
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,6 +18,7 @@ import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
 
+@Stateless
 class InlineMappers {
     private static final ImmutableList<Inliner> SUPPORTED_INLINERS = ImmutableList.of(
         wrap(field -> field.getType().isEnum(), InlineMappers::ofEnum),

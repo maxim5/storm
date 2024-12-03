@@ -1,8 +1,9 @@
 package io.spbx.orm.arch.model;
 
 import com.google.common.collect.ImmutableList;
-import com.google.errorprone.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.concurrent.Immutable;
 
 @Immutable
 public class MultiColumnTableField extends TableField {

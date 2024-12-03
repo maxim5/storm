@@ -1,8 +1,6 @@
 package io.spbx.orm.api;
 
-import com.google.common.flogger.FluentLogger;
 import com.google.common.flogger.LazyArgs;
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.spbx.orm.api.query.AlterTableAddForeignKeyQuery;
 import io.spbx.orm.api.query.AlterTableQuery;
 import io.spbx.orm.api.query.Args;
@@ -11,15 +9,16 @@ import io.spbx.orm.api.query.DataDefinitionQuery;
 import io.spbx.orm.api.query.DropTableQuery;
 import io.spbx.orm.api.query.HardcodedSelectQuery;
 import io.spbx.orm.api.query.TruncateTableQuery;
-import io.spbx.util.base.Unchecked;
+import io.spbx.util.base.annotate.CanIgnoreReturnValue;
+import io.spbx.util.base.error.Unchecked;
+import io.spbx.util.logging.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
 
-import static io.spbx.util.base.BasicExceptions.notImplemented;
+import static io.spbx.util.base.error.BasicExceptions.notImplemented;
 
 /**
  * An admin API to the database, e.g. DDL queries for DB schema manipulation.
@@ -27,7 +26,7 @@ import static io.spbx.util.base.BasicExceptions.notImplemented;
  * @see DataDefinitionQuery
  */
 public class DbAdmin {
-    private static final FluentLogger log = FluentLogger.forEnclosingClass();
+    private static final Logger log = Logger.forEnclosingClass();
 
     private final Connector connector;
 
@@ -63,8 +62,7 @@ public class DbAdmin {
 
     public @NotNull DbAdmin ignoringForeignKeyChecks() {
         return new DbAdmin(connector) {
-            @Override
-            protected void doRunUpdate(@NotNull DataDefinitionQuery query) {
+            @Override protected void doRunUpdate(@NotNull DataDefinitionQuery query) {
                 try {
                     DbAdmin.this.setOptionIfSupported("foreign_key_checks", "0");
                     super.doRunUpdate(query);
@@ -120,9 +118,9 @@ public class DbAdmin {
 
     protected void doRunUpdate(@NotNull DataDefinitionQuery query) {
         try {
-            log.at(Level.INFO).log("Running: %s ...", LazyArgs.lazy(() -> describeQuery(query.repr())));
+            log.info().log("Running: %s ...", LazyArgs.lazy(() -> describeQuery(query.repr())));
             int rows = runner().runUpdate(query);
-            log.at(Level.FINER).log("Query OK, %d rows affected", rows);
+            log.debug().log("Query OK, %d rows affected", rows);
         } catch (SQLException e) {
             throw new QueryException("Failed to run admin query", query.repr(), query.args(), e);
         }
@@ -142,12 +140,10 @@ public class DbAdmin {
 
     private static @NotNull DataDefinitionQuery hardcoded(@NotNull String query) {
         return new DataDefinitionQuery() {
-            @Override
-            public @NotNull String repr() {
+            @Override public @NotNull String repr() {
                 return query;
             }
-            @Override
-            public @NotNull Args args() {
+            @Override public @NotNull Args args() {
                 return Args.of();
             }
         };

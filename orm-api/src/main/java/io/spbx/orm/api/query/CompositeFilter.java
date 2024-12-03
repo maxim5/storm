@@ -1,10 +1,10 @@
 package io.spbx.orm.api.query;
 
-import com.google.errorprone.annotations.Immutable;
 import io.spbx.orm.api.Engine;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Arrays;
 
 import static io.spbx.orm.api.query.Args.flattenArgsOf;

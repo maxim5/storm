@@ -6,7 +6,7 @@ import io.spbx.orm.arch.model.MapperApi;
 import io.spbx.orm.arch.model.TableArch;
 import io.spbx.orm.arch.util.AnnotationsAnalyzer;
 import io.spbx.orm.arch.util.JavaField;
-import io.spbx.util.base.Pair;
+import io.spbx.util.base.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

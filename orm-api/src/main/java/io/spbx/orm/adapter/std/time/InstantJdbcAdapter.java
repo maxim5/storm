@@ -3,6 +3,7 @@ package io.spbx.orm.adapter.std.time;
 import io.spbx.orm.adapter.JdbcAdapt;
 import io.spbx.orm.adapter.JdbcSingleValueAdapter;
 import io.spbx.orm.api.ResultSetIterator;
+import io.spbx.util.base.annotate.Stateless;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -27,6 +28,7 @@ import java.time.Instant;
  * @see io.spbx.webby.db.codec.std.time.Instant64NanoCodec
  * @see io.spbx.webby.db.codec.std.time.Instant64MicroCodec
  */
+@Stateless
 @JdbcAdapt(Instant.class)
 public class InstantJdbcAdapter implements JdbcSingleValueAdapter<Instant>, ResultSetIterator.Converter<Instant> {
     public static final InstantJdbcAdapter ADAPTER = new InstantJdbcAdapter();

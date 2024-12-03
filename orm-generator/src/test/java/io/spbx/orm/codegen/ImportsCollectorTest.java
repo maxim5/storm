@@ -16,7 +16,7 @@ import io.spbx.orm.api.TableObj;
 import io.spbx.orm.api.annotate.Sql;
 import io.spbx.orm.arch.factory.TestingArch;
 import io.spbx.orm.testing.FakeModelAdaptersLocator;
-import io.spbx.util.base.Maybe;
+import io.spbx.util.base.lang.Maybe;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;

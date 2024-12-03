@@ -7,6 +7,7 @@ import io.spbx.util.reflect.BasicMembers.Methods;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import static io.spbx.util.reflect.BasicMembers.hasType;
 import static io.spbx.util.reflect.BasicMembers.isPublicStatic;
 import static java.util.Objects.requireNonNull;
 
+@Immutable
 public class MapperApi implements ApiFormatter<MapperApi.MapperCallFormatter> {
     private final JdbcType jdbcType;
     private final MapperCallFormatter formatter;

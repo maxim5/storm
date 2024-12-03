@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static io.spbx.orm.api.query.Shortcuts.*;
 import static io.spbx.orm.testing.MockingJdbc.assertThat;
-import static io.spbx.util.collect.BasicIterables.asList;
+import static io.spbx.util.collect.iter.BasicIterables.asList;
 import static io.spbx.util.testing.TestingBasics.listOf;
 import static io.spbx.util.testing.TestingBasics.mapOf;
 

@@ -5,11 +5,12 @@ import com.carrotsearch.hppc.LongContainer;
 import io.spbx.orm.api.QueryRunner;
 import io.spbx.orm.api.query.Column;
 import io.spbx.orm.api.query.Contextual;
-import io.spbx.util.base.Unchecked;
-import io.spbx.util.prima.extern.hppc.HppcLong;
+import io.spbx.util.base.error.Unchecked;
+import io.spbx.util.extern.hppc.HppcLong;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.Immutable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
  * <p>
  * The statement is updated via {@link PreparedStatement#setLong(int, long)} from index 0.
  */
+@Immutable
 public record BatchEntityLongData(@NotNull List<Column> columns,
                                   @NotNull LongContainer values) implements BatchEntityData<LongArrayList> {
     public BatchEntityLongData {

@@ -5,11 +5,12 @@ import io.spbx.orm.api.BaseTable;
 import io.spbx.orm.api.ResultSetIterator;
 import io.spbx.orm.api.TableMeta;
 import io.spbx.orm.api.query.Column;
-import io.spbx.util.base.Pair;
-import io.spbx.util.collect.ArrayTabular;
-import io.spbx.util.collect.Streamer;
-import io.spbx.util.collect.Tabular;
-import io.spbx.util.collect.TabularFormatter;
+import io.spbx.util.base.annotate.Stateless;
+import io.spbx.util.base.tuple.Pair;
+import io.spbx.util.collect.stream.Streamer;
+import io.spbx.util.collect.tab.ArrayTabular;
+import io.spbx.util.collect.tab.Tabular;
+import io.spbx.util.collect.tab.TabularFormatter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
+@Stateless
 public class DebugSql {
     public static @NotNull ResultSetIterator<Row> iterateRows(@NotNull ResultSet resultSet) {
         return ResultSetIterator.of(resultSet, DebugSql::toDebugRow);

@@ -1,10 +1,10 @@
 package io.spbx.orm.api.query;
 
 import com.google.common.collect.ImmutableList;
-import com.google.errorprone.annotations.Immutable;
-import io.spbx.util.collect.Streamer;
+import io.spbx.util.collect.stream.Streamer;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;

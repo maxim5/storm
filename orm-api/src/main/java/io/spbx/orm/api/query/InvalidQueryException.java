@@ -1,6 +1,6 @@
 package io.spbx.orm.api.query;
 
-import io.spbx.util.base.BasicRuntimeException;
+import io.spbx.util.base.error.BasicRuntimeException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
