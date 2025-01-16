@@ -1,6 +1,7 @@
 package io.spbx.orm.arch.model;
 
 import io.spbx.util.base.annotate.Stateless;
+import io.spbx.util.base.str.Regex;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.VisibleForTesting;
 
@@ -17,6 +18,6 @@ public class SqlNameValidator {
 
     @VisibleForTesting
     static boolean isValidSqlName(@NotNull String name) {
-        return SQL_NAME_PATTERN.matcher(name).matches();
+        return Regex.on(name).matches(SQL_NAME_PATTERN);
     }
 }
