@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 
 import static io.spbx.util.collect.map.BasicMaps.newOrderedMap;
+import static io.spbx.util.collect.map.BasicMaps.orderedMapOf;
 
 public class FakeModelAdaptersLocator implements ModelAdaptersLocator {
     public static final ImmutableMap<Class<?>, Class<?>> DEFAULT_MAP = ImmutableMap.of(
@@ -29,7 +30,7 @@ public class FakeModelAdaptersLocator implements ModelAdaptersLocator {
     }
 
     public static @NotNull FakeModelAdaptersLocator defaults() {
-        return new FakeModelAdaptersLocator(newOrderedMap(DEFAULT_MAP));
+        return new FakeModelAdaptersLocator(orderedMapOf(DEFAULT_MAP));
     }
 
     public static @NotNull FakeModelAdaptersLocator immutableOf(@NotNull Map<Class<?>, Class<?>> byClassMap) {

@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.maxim5:storm:0.3.0")
+    implementation("com.github.maxim5:storm:0.3.1")
 }
 ```
 
